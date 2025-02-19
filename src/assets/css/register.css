@@ -1,0 +1,78 @@
+/* Container for the registration form */
+.register-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f8f9fa;
+  padding: 20px;
+}
+
+/* Registration Box */
+.register-box {
+  position: relative;
+  max-width: 100%;
+  width: 400px;
+  padding: 20px;
+  border-radius: 10px;
+  background: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Tab Styles */
+.register-tabs {
+  display: flex;
+  border-bottom: 2px solid #e9ecef;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.register-tabs .tab {
+  flex: 1;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 10px 0;
+  cursor: pointer;
+  color: #6c757d;
+  transition: color 0.3s ease;
+}
+
+.register-tabs .tab.active {
+  color: #007bff;
+}
+
+/* Active Tab Indicator */
+.register-tabs .active-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  height: 3px;
+  background-color: #007bff;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Fade-in animation */
+.form-container {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+      transform: translateX(20px);
+  }
+  to {
+      opacity: 1;
+      transform: translateX(0);
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 480px) {
+  .register-box {
+      width: 100%;
+      padding: 15px;
+  }
+}
