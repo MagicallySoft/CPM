@@ -63,48 +63,27 @@ const Login = () => {
     <Container className="login-container login-box">
       <ToastContainer position="top-right" autoClose={3000} />
       <Row className="w-100 justify-content-center">
-        <Col xs={12} md={8} lg={5} className="mx-auto">
-          <div className="login-card p-4 shadow-lg rounded bg-white">
+        <Col xs={12} md={8} lg={5} className="mx-auto d-flex justify-content-center">
+          <div className="login-card shadow rounded bg-white">
             {/* Dynamic header and subheader */}
-            <h2 className="login-title text-center">
+            <h2 className="login-title text-center responsive-heading">
               {activeTab === "admin" ? "Admin Login" : "Staff Login"}
             </h2>
-            <p className="text-center text-muted mb-4">
-              You are logging in as{" "}
-              {activeTab === "admin" ? "Admin" : "Staff"} user.
+            <p className="text-center text-muted responsive-text mb-4">
+              You are logging in as {activeTab === "admin" ? "Admin" : "Staff"} user.
             </p>
 
             {/* Tab Header for toggling between login types */}
-            <div className="login-tabs d-flex mb-4">
+            <div className="login-tabs">
               <div
-                className={`tab ${activeTab === "staff" ? "active" : ""}`}
+                className={`tab responsive-text ${activeTab === "staff" ? "active" : ""}`}
                 onClick={() => setActiveTab("staff")}
-                style={{
-                  flex: 1,
-                  textAlign: "center",
-                  cursor: "pointer",
-                  padding: "10px",
-                  borderBottom:
-                    activeTab === "staff"
-                      ? "2px solid #007bff"
-                      : "1px solid #ccc",
-                }}
               >
                 Staff
               </div>
               <div
-                className={`tab ${activeTab === "admin" ? "active" : ""}`}
+                className={`tab responsive-text ${activeTab === "admin" ? "active" : ""}`}
                 onClick={() => setActiveTab("admin")}
-                style={{
-                  flex: 1,
-                  textAlign: "center",
-                  cursor: "pointer",
-                  padding: "10px",
-                  borderBottom:
-                    activeTab === "admin"
-                      ? "2px solid #007bff"
-                      : "1px solid #ccc",
-                }}
               >
                 Admin
               </div>
@@ -118,14 +97,14 @@ const Login = () => {
 
             <Form noValidate validated={validated} onSubmit={handleSubmit}>
               <Form.Group controlId="email">
-                <Form.Label>Email</Form.Label>
+                <Form.Label className="responsive-text">Email</Form.Label>
                 <Form.Control
                   type="email"
                   name="email"
                   placeholder="Enter email"
                   onChange={handleChange}
                   required
-                  className="login-input"
+                  className="login-input responsive-input"
                 />
                 <Form.Control.Feedback type="invalid">
                   Please enter a valid email.
@@ -133,14 +112,14 @@ const Login = () => {
               </Form.Group>
 
               <Form.Group controlId="password" className="mt-3">
-                <Form.Label>Password</Form.Label>
+                <Form.Label className="responsive-text">Password</Form.Label>
                 <Form.Control
                   type="password"
                   name="password"
                   placeholder="Enter password"
                   onChange={handleChange}
                   required
-                  className="login-input"
+                  className="login-input responsive-input"
                 />
                 <Form.Control.Feedback type="invalid">
                   Password is required.
@@ -149,7 +128,7 @@ const Login = () => {
 
               <Button
                 type="submit"
-                className="login-btn login-btn-primary mt-4"
+                className="login-btn login-btn-primary mt-4 responsive-btn"
                 disabled={loading}
               >
                 {loading ? (
@@ -161,8 +140,8 @@ const Login = () => {
                 )}
               </Button>
             </Form>
-            <div className="mt-3">
-            <Link to="/register" className="text-center">New User?</Link>
+            <div className="mt-3 text-center responsive-text">
+              <Link to="/register">New User?</Link>
             </div>
           </div>
         </Col>

@@ -8,7 +8,7 @@ const Register = () => {
   const [activeTab, setActiveTab] = useState("company");
 
   return (
-    <Container fluid className="d-flex align-items-center justify-content-center register-container min-vh-100">
+    <Container fluid className="d-flex align-items-center justify-content-center register-container ">
       <Row className="justify-content-center w-100">
         <Col xs={12} sm={10} md={8} lg={5}>
           <div className="register-card shadow rounded">

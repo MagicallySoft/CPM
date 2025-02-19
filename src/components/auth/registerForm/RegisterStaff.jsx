@@ -63,7 +63,7 @@ const RegisterStaff = () => {
   return (
     <Container fluid className="d-flex align-items-center justify-content-center">
       <ToastContainer />
-      <Row className="w-100 justify-content-center">
+      <div className="w-100 justify-content-center">
         <Col xs={12}>
           <div className="register-card shadow rounded">
             <h2 className="text-center mb-4 responsive-heading text-cstm">
@@ -222,7 +222,7 @@ const RegisterStaff = () => {
             </div>
           </div>
         </Col>
-      </Row>
+      </div>
     </Container>
   );
 };

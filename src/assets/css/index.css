@@ -1489,57 +1489,83 @@ a.contact-link:hover {
 /* ========================= */
 /* Login */
 /* ========================= */
-.login-box {
-  /* margin-left: 100px !important; */
-  margin-top: 150px !important;
-  background-image: url('../image/image-1.png');
-  background-size: contain;
-  background-position: 220px ; 
-  background-repeat: no-repeat;
+/* Responsive Base Styles */
+.responsive-text {
+  font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320)));
 }
 
-.regiter-box {
-  /* margin-left: 100px !important; */
-  margin-top: 150px !important;
-  background-image: url('../image/image-2.png');
+.responsive-heading {
+  font-size: calc(20px + (32 - 20) * ((100vw - 320px) / (1920 - 320)));
+}
+
+.responsive-input {
+  padding-top: calc(7px + (8 - 7) * ((100vw - 320px) / (1920 - 320))) !important;
+  padding-bottom: calc(7px + (8 - 7) * ((100vw - 320px) / (1920 - 320))) !important;
+  padding-right: calc(15px + (30 - 15) * ((100vw - 320px) / (1920 - 320))) !important;
+  padding-left: calc(15px + (30 - 15) * ((100vw - 320px) / (1920 - 320))) !important;
+  font-size: inherit;
+}
+
+.responsive-btn {
+  font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320)));
+  padding: calc(8px + (10 - 8) * ((100vw - 320px) / (1920 - 320))) !important;
+}
+
+/* Login Page Specific Styles */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.login-box {
+  margin-top: 150px;
+  background-image: url('../image/image-1.png');
   background-size: contain;
   background-position: 220px;
   background-repeat: no-repeat;
 }
 
-/* Page Background */
-.login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* min-height: 100vh; */
-  /* background: #f8f9fa; */
-  padding: 20px;
-}
-
-/* Login Card */
 .login-card {
-  padding: 30px;
+  padding: calc(15px + (30 - 15) * ((100vw - 320px) / (1920 - 320)));
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   background: #ffffff;
-  /* text-align: center; */
   width: 100%;
   max-width: 450px;
 }
 
-/* Title */
 .login-title {
   color: #007bff;
-  font-size: 24px;
   font-weight: bold;
   margin-bottom: 20px;
 }
 
-/* Form Input */
+.login-tabs {
+  display: flex;
+  margin-bottom: calc(15px + (30 - 15) * ((100vw - 320px) / (1920 - 320)));
+  border-bottom: 1px solid #ccc;
+}
+
+.login-tabs .tab {
+  flex: 1;
+  text-align: center;
+  cursor: pointer;
+  padding: calc(10px + (15 - 10) * ((100vw - 320px) / (1920 - 320)));
+  border-bottom: 1px solid #ccc;
+  transition: all 0.3s ease;
+}
+
+.login-tabs .tab.active {
+  border-bottom: 2px solid #007bff;
+  color: #007bff;
+}
+
 .login-input {
-  font-size: 16px;
-  padding: 10px;
+  font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320)));
+  padding: calc(7px + (8 - 7) * ((100vw - 320px) / (1920 - 320)))
+    calc(15px + (30 - 15) * ((100vw - 320px) / (1920 - 320)));
   border-radius: 6px;
   border: 1px solid #ddd;
   transition: all 0.3s ease-in-out;
@@ -1550,15 +1576,12 @@ a.contact-link:hover {
   box-shadow: 0 0 8px rgba(0, 173, 181, 0.3);
 }
 
-/* Buttons */
 .login-btn {
-  font-size: 16px;
   font-weight: bold;
-  padding: 10px;
   border-radius: 6px;
   width: 100%;
-  transition: all 0.3s ease-in-out;
   border: none !important;
+  transition: all 0.3s ease-in-out;
 }
 
 .login-btn-primary {
@@ -1574,18 +1597,18 @@ a.contact-link:hover {
   cursor: not-allowed;
 }
 
-/* Alert Message */
 .login-alert {
-  font-size: 14px;
-  padding: 10px;
+  font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320)));
+  padding: calc(7px + (8 - 7) * ((100vw - 320px) / (1920 - 320)));
 }
 
-/* Responsive */
+/* Responsive Adjustments */
 @media (max-width: 768px) {
   .login-card {
-    padding: 20px;
+    padding: calc(15px + (30 - 15) * ((100vw - 320px) / (1920 - 320)));
   }
 }
+
 
 
 /* /////////////////////// */
