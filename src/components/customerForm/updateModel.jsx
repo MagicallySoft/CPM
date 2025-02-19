@@ -8,6 +8,9 @@ const UpdateCustomerModal = ({ show, handleClose, customerData }) => {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.customer || []);
   const { customFields } = useSelector((state) => state.customField) || { customFields: [] };
+  const { subadmins } = useSelector((state) => state.user) || { subadmins: [] };
+  console.log(subadmins);
+  
   const [formData, setFormData] = useState({});
 
   const ProductName = [
@@ -81,20 +84,41 @@ const UpdateCustomerModal = ({ show, handleClose, customerData }) => {
     // console.log("setFormData\n", formData);
   };
 
+  // const addProduct = () => {
+  //   // console.log("Done", formData);
+    
+  //   setFormData({
+  //     ...formData,
+  //     products: [...formData.products, {
+  //         productName: "",
+  //         purchaseDate: "",
+  //         renewalDate: "",
+  //         details: "",
+  //         reference: false,
+  //         referenceDetail: {}
+  //     }],
+  // });
+  //   console.log("Add Product FormData\n", formData);
+  // };
+
   const addProduct = () => {
     setFormData({
       ...formData,
-      products: [...formData.products, {
-        productName: "",
-        purchaseDate: "",
-        renewalDate: "",
-        details: "",
-        reference: false,
-        referenceDetail: {}
-      }],
+      products: [
+        ...(formData.products || []),
+        {
+          productName: "",
+          purchaseDate: "",
+          renewalDate: "",
+          details: "",
+          reference: false,
+          referenceDetail: {},
+        },
+      ],
     });
-    // console.log("Add Product FormData\n", formData);
+    console.log("Add Product FormData\n", formData);
   };
+  
 
   const removeProduct = (index) => {
     const updatedProducts = formData.products.filter((_, i) => i !== index);

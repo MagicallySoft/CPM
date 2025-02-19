@@ -41,74 +41,75 @@ const CustomerDetailModal = ({ show, onHide, customer }) => {
         <Modal.Body>
           {/* <Table striped bordered hover className="customer-detail-table align-middle mb-0"> */}
           <Table className="align-middle mb-0">
-          <tbody>
-            <tr>
-              <td><strong>Company Name:</strong></td>
-              <td>{customer.companyName}</td>
-            </tr>
-            <tr>
-              <td><strong>Contact Person:</strong></td>
-              <td>{customer.contactPerson}</td>
-            </tr>
-            <tr>
-              <td><strong>Mobile Number:</strong></td>
-              <td>{customer.mobileNumber}</td>
-            </tr>
-            <tr>
-              <td><strong>Email:</strong></td>
-              <td>{customer.email}</td>
-            </tr>
-            <tr>
-              <td><strong>Tally Serial Number:</strong></td>
-              <td>{customer.tallySerialNo}</td>
-            </tr>
-            <tr>
-              <td><strong>Prime:</strong></td>
-              <td>{customer.prime ? "✔ Yes" : "❌ No"}</td>
-            </tr>
-            <tr>
-              <td><strong>Blacklisted:</strong></td>
-              <td>{customer.blacklisted ? "✔ Yes" : "❌ No"}</td>
-            </tr>
-            <tr>
-              <td><strong>Remark:</strong></td>
-              <td>{customer.remark || "N/A"}</td>
-            </tr>
-            {/* Products Section */}
-            <tr>
-              <td><strong>Products:</strong></td>
-              <td>
-                {customer.products?.length > 0 ? (
-                  <div className="d-flex justify-content-between">
-                    {customer.products.map((product, index) => (
-                      // <li key={index}>
-                      <Button
-                        // variant="link"
-                        className="bg-btn"
-                        onClick={() => handleProductClick(product)}
-                      >
-                        {product.productName}
-                      </Button>
-                      // </li>
-                    ))}
-                  </div>
-                ) : (
-                  "No products found"
-                )}
-              </td>
-            </tr>
-          </tbody>
-        </Table>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="danger"  onClick={onHide}>
-          Close
-        </Button>
-      </Modal.Footer>
-    </Modal >
+            <tbody>
+              <tr>
+                <td><strong>Company Name:</strong></td>
+                <td>{customer.companyName}</td>
+              </tr>
+              <tr>
+                <td><strong>Contact Person:</strong></td>
+                <td>{customer.contactPerson}</td>
+              </tr>
+              <tr>
+                <td><strong>Mobile Number:</strong></td>
+                <td>{customer.mobileNumber}</td>
+              </tr>
+              <tr>
+                <td><strong>Email:</strong></td>
+                <td>{customer.email}</td>
+              </tr>
+              <tr>
+                <td><strong>Tally Serial Number:</strong></td>
+                <td>{customer.tallySerialNo}</td>
+              </tr>
+              <tr>
+                <td><strong>Prime:</strong></td>
+                <td>{customer.prime ? "✔ Yes" : "❌ No"}</td>
+              </tr>
+              <tr>
+                <td><strong>Blacklisted:</strong></td>
+                <td>{customer.blacklisted ? "✔ Yes" : "❌ No"}</td>
+              </tr>
+              <tr>
+                <td><strong>Remark:</strong></td>
+                <td>{customer.remark || "N/A"}</td>
+              </tr>
+              {/* Products Section */}
+              <tr>
+                <td><strong>Products:</strong></td>
+                <td>
+                  {customer.products?.length > 0 ? (
+                    <div className="d-flex justify-content-between" >
+                      {customer.products.map((product, index) => (
+                        // <li key={index}>
+                        <Button
+                          // variant="link"
+                          key={index}
+                          className="bg-btn"
+                          onClick={() => handleProductClick(product)}
+                        >
+                          {product.productName}
+                        </Button>
+                        // </li>
+                      ))}
+                    </div>
+                  ) : (
+                    "No products found"
+                  )}
+                </td>
+              </tr>
+            </tbody>
+          </Table>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={onHide}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal >
 
-      {/* Product Details Modal */ }
-      < Modal show = { productModalShow } onHide = {() => setProductModalShow(false)} >
+      {/* Product Details Modal */}
+      < Modal show={productModalShow} onHide={() => setProductModalShow(false)} >
         <Modal.Header closeButton>
           <Modal.Title>Product Details</Modal.Title>
         </Modal.Header>
