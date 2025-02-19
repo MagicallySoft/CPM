@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCustomFields, updateCustomer } from "../../redux/actions/customerActions";
+import { getCustomFields, updateCustomer } from "../../redux/actions/customer/customerActions";
 import { Modal, Button, Form, Spinner, Row, Col, Card } from "react-bootstrap";
 import Select from "react-select";
 

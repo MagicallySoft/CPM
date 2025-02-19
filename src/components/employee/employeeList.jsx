@@ -1,7 +1,7 @@
 // import React, { useEffect } from "react";
 // import { Table, Spinner, Alert, Container, Card } from "react-bootstrap";
 // import { useDispatch, useSelector } from "react-redux";
-// import { fetchUser } from "../../redux/actions/adminActions";
+// import { fetchUser } from "../../redux/actions/auth/adminActions";
 
 // const UserList = () => {
 //   const dispatch = useDispatch();
@@ -71,7 +71,7 @@
 import React, { useEffect } from "react";
 import { Card, Spinner, Alert, Container, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUser } from "../../redux/actions/adminActions";
+import { fetchUser } from "../../redux/actions/auth/adminActions";
 import { FaUserShield, FaUserTie, FaUser, FaEnvelope, FaCalendarAlt } from "react-icons/fa";
 
 const UserList = () => {

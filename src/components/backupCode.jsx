@@ -1017,7 +1017,7 @@
 /////////////////////////////////
 
 // import axios from "axios";
-// import { logoutUser } from "../redux/actions/authActions";
+// import { logoutUser } from "../redux/actions/auth/authActions";
 // import { toast } from "react-toastify";
 
 // const axiosInstance = axios.create({

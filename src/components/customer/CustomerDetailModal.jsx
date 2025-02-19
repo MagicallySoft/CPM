@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Modal, Button, Table, Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import "../../assets/css/index.css";
-import { fetchUser } from "../../redux/actions/adminActions"
+import { fetchUser } from "../../redux/actions/auth/adminActions"
 
 const CustomerDetailModal = ({ show, onHide, customer }) => {
   // console.log(customer);
@@ -78,7 +78,7 @@ const CustomerDetailModal = ({ show, onHide, customer }) => {
             <tr>
               <td><strong>Products:</strong></td>
               <td>
-                {customer.products.length > 0 ? (
+                {customer.products?.length > 0 ? (
                   <div className="d-flex justify-content-between">
                     {customer.products.map((product, index) => (
                       // <li key={index}>

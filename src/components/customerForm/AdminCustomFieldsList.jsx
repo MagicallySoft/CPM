@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCustomFields, deleteField } from "../../redux/actions/customerActions";
+import { getCustomFields, deleteField } from "../../redux/actions/customer/customerActions";
 import { Card, Table, Row, Col, Form, Button, Spinner, Container, Pagination, Badge, ButtonGroup } from "react-bootstrap";
 import { FaSearch, FaEye, FaEdit, FaTrash, FaStar, FaBan, FaInfoCircle } from "react-icons/fa";
 import AddCustomFieldButton from "./AddCustomFieldButton";

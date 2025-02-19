@@ -11,7 +11,7 @@ import {
 } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { registerStaff } from "../../../redux/actions/authActions";
+import { registerStaff } from "../../../redux/actions/auth/authActions";
 import { ToastContainer } from "react-toastify";
 import { BsEnvelope, BsPerson, BsKey } from "react-icons/bs";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";

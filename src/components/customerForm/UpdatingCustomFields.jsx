@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Modal, Button, Form, Spinner } from "react-bootstrap";
-import { updateCustomField } from "../../redux/actions/customerActions";
+import { updateCustomField } from "../../redux/actions/customer/customerActions";
 import { toast } from "react-toastify";
 import { FaPlus, FaTimes } from "react-icons/fa";
 import "../../assets/css/index.css"

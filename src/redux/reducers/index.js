@@ -1,8 +1,10 @@
 import { combineReducers, createStore, applyMiddleware } from "redux";
-import { codeReducer } from "./codeReducer";
-import { authReducer } from "./authReducer"; 
-import { customerReducer, customFieldReducer,customerReminderReducer } from "./customerReducer";
-import { usersReducer } from "./adminReducer";
+import { usersReducer } from "./auth/adminReducer";
+import { codeReducer } from "./auth/codeReducer";
+import { authReducer } from "./auth/authReducer"; 
+import { customerReducer } from "./customer/customerReducer";
+import { customFieldReducer } from "./customer/customFieldReducer";
+import { customerReminderReducer } from "./customer/customerReminder";
 import { taskReducer } from "./task/taskReducer";
 import { taskUserReducer } from "./task/taskUserReducer";
 

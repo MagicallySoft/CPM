@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { generateCode_ } from "../../redux/actions/codeActions";
+import { generateCode_ } from "../../redux/actions/auth/codeActions";
 import {
   Button,
   Container,

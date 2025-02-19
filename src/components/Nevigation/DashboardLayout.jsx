@@ -7,7 +7,7 @@ import { BsListTask } from "react-icons/bs";
 import { GoTasklist } from "react-icons/go";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { logoutUser } from "../../redux/actions/authActions";
+import { logoutUser } from "../../redux/actions/auth/authActions";
 import "../../assets/css/index.css";
 
 const DashboardLayout = ({ children }) => {

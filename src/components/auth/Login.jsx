@@ -10,7 +10,7 @@ import {
   Spinner,
 } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../../redux/actions/authActions";
+import { loginUser } from "../../redux/actions/auth/authActions";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { Link } from 'react-router-dom';

@@ -6,7 +6,7 @@ import { LiaUserSecretSolid } from "react-icons/lia";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { registerAdmin } from "../../../redux/actions/authActions";
+import { registerAdmin } from "../../../redux/actions/auth/authActions";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../../../assets/css/index.css";

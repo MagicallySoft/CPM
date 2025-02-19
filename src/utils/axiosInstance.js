@@ -1,5 +1,5 @@
 import axios from "axios";
-import { logoutUser } from "../redux/actions/authActions";
+import { logoutUser } from "../redux/actions/auth/authActions";
 import { toast } from "react-toastify";
 import { jwtDecode } from "jwt-decode"; // Import JWT decoder
 

@@ -1,4 +1,4 @@
-import axiosInstance from "../../utils/axiosInstance";
+import axiosInstance from "../../../utils/axiosInstance";
 import { toast } from "react-toastify";
 
 // ✅ Add Customer
@@ -29,7 +29,7 @@ export const searchCustomer = (searchQuery, page = 1, limit = 10) => async (disp
     const { data } = await axiosInstance.get("/customer/customer", {
       params: { ...searchQuery, page, limit },
     });
-    console.log(data);
+    // console.log(data);
     
     dispatch({
       type: "FETCH_CUSTOMERS_SUCCESS",
@@ -40,8 +40,8 @@ export const searchCustomer = (searchQuery, page = 1, limit = 10) => async (disp
     });
   } catch (error) {
     const errorMessage = error.response?.data?.message || "Something went wrong";
-    console.log("API\n",errorMessage)
-    console.log("ERROR\n",error)
+    // console.log("API\n",errorMessage)
+    // console.log("ERROR\n",error)
     dispatch({ type: "FETCH_CUSTOMERS_FAIL", payload: errorMessage });
   }
 };
@@ -69,10 +69,11 @@ export const updateCustomer = (customerId, customerData) => async (dispatch) => 
     dispatch({ type: "UPDATE_CUSTOMER_REQUEST" });
 
     const { data } = await axiosInstance.put(`/customer/customer/${customerId}`, customerData);
-
+    // console.log(data.data);
+    
     dispatch({
       type: "UPDATE_CUSTOMER_SUCCESS",
-      payload: data.customer,
+      payload: data.data,
     });
 
     toast.success(data.message || "Customer updated successfully!");
@@ -111,7 +112,8 @@ export const getCustomFields = () => async (dispatch) => {
     dispatch({ type: "FETCH_CUSTOM_FIELDS_REQUEST" });
 
     const { data } = await axiosInstance.get("/customer/customfield");
-
+    // console.log(data);
+    
     dispatch({ type: "FETCH_CUSTOM_FIELDS_SUCCESS", payload: data.data });
   } catch (error) {
     dispatch({
@@ -156,7 +158,6 @@ export const deleteField = (fieldId) => async (dispatch) => {
   }
 };
 
-
 // ✅ Search Customers with Pagination
 export const fetchReminders = (searchQuery) => async (dispatch) => {
   try {
@@ -191,5 +192,26 @@ export const deleteReminder = (fieldId) => async (dispatch) => {
     toast.error(errorMessage);
 
     throw error;
+  }
+};
+
+// ✅ import Customer Data
+export const importCustomersAction = (customerData) => async (dispatch) => {
+  try {
+    dispatch({ type: "ADD_CUSTOMER_REQUEST" });
+
+    const { data } = await axiosInstance.post("/customer/importcustomers", customerData);
+    // console.log("Responce", data)
+    dispatch({ type: "ADD_CUSTOMER_SUCCESS", payload: data.data });
+
+    toast.success(data.message || "Customer added successfully!");
+    return Promise.resolve();
+  } catch (error) {
+    const errorMessage = error.response?.data?.message || "Something went wrong";
+
+    dispatch({ type: "ADD_CUSTOMER_FAIL", payload: errorMessage });
+    toast.error(errorMessage);
+
+    return Promise.reject();
   }
 };

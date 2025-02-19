@@ -31,7 +31,7 @@
 
 import axiosInstance from "./axiosInstance";
 import { store } from "../redux/store";
-import { logoutUser } from "../redux/actions/authActions";
+import { logoutUser } from "../redux/actions/auth/authActions";
 
 const token = localStorage.getItem("userToken");
 

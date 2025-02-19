@@ -1,6 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import axiosInstance from "../../utils/axiosInstance";
+import axiosInstance from "../../../utils/axiosInstance";
 
 // Admin Registration Action
 export const registerAdmin = (adminData, navigate) => async (dispatch) => {

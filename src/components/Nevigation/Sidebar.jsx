@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Nav, Offcanvas, Button } from "react-bootstrap";
 import { FaBars, FaHome, FaUser, FaCode, FaList, FaSignOutAlt, FaRegAddressCard } from "react-icons/fa";
 import { MdAddCircleOutline } from "react-icons/md";
-import { logoutUser } from "../../redux/actions/authActions";
+import { logoutUser } from "../../redux/actions/auth/authActions";
 import "../assets/css/index.css";
 
 const Sidebar = ({ compact }) => {
@@ -97,7 +97,7 @@ export default Sidebar;
 // import { Navbar, Nav, Offcanvas, Button, Container } from "react-bootstrap";
 // import { FaBars, FaHome, FaUser, FaCode, FaList, FaSignInAlt, FaSignOutAlt, FaRegAddressCard } from "react-icons/fa";
 // import { MdAddCircleOutline } from "react-icons/md";
-// import { logoutUser } from "../redux/actions/authActions";
+// import { logoutUser } from "../redux/actions/auth/authActions";
 // import "../assets/css/index.css";
 
 // const Sidebar = () => {

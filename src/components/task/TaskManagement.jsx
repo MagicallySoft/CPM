@@ -2,7 +2,7 @@
 // import { Card, Button, Modal, Form, Spinner, Alert } from "react-bootstrap";
 // import { useDispatch, useSelector } from "react-redux";
 // import { fetchTasks, createTask, updateTask, deleteTask } from "../../redux/actions/task/taskActions";
-// import { fetchUser } from "../../redux/actions/adminActions";
+// import { fetchUser } from "../../redux/actions/auth/adminActions";
 // import { toast } from "react-toastify";
 // import { FaEdit, FaTrash, FaPlus } from "react-icons/fa";
 
@@ -163,7 +163,7 @@ import React, { useEffect, useState } from "react";
 import { Card, Button, Modal, Form, Spinner, Alert, Badge, ButtonGroup } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTasks, createTask, updateTask, deleteTask } from "../../redux/actions/task/taskActions";
-import { fetchUser } from "../../redux/actions/adminActions";
+import { fetchUser } from "../../redux/actions/auth/adminActions";
 import { toast } from "react-toastify";
 import { FaEdit, FaTrash, FaPlus, FaClock, FaSpinner, FaCheckCircle, FaUser, FaSearch, FaCalendar  } from "react-icons/fa";
 import { motion } from "framer-motion";

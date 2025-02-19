@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchReminders } from "../../redux/actions/customerActions";
+import { fetchReminders } from "../../redux/actions/customer/customerActions";
 import {
     Card, Table, Row, Col, Form, Button, Spinner, Container,
     Modal, ListGroup, Badge, ButtonGroup, Stack

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addCustomer, getCustomFields } from "../../redux/actions/customerActions";
-import { fetchUser } from "../../redux/actions/adminActions"
+import { addCustomer, getCustomFields } from "../../redux/actions/customer/customerActions";
+import { fetchUser } from "../../redux/actions/auth/adminActions"
 import { Form, Button, Container, Row, Col, Spinner, Card } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AddCustomFieldButton from "./AddCustomFieldButton";
+import FileUploadButton from "./FileUploadButton"
 import Select from "react-select";
 import "../../assets/css/index.css";
 
@@ -202,8 +203,9 @@ const ClientForm = () => {
     return (
         <Container>
             <ToastContainer position="top-right" autoClose={3000} />
-            <div className="mt-1">
+            <div className="mt-1 d-flex justify-content-between">
             <AddCustomFieldButton />
+            <FileUploadButton  />
             </div>
             <Row className="justify-content-md-center">
                 <Col md={8}>
