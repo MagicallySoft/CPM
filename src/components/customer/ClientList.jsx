@@ -84,6 +84,56 @@ const ClientList = () => {
         setShowUpdateModal(true);
     };
 
+    // Inside your CustomerList component
+
+    // Helper function to generate pagination items with ellipsis
+    const getPaginationItems = () => {
+        const total = pagination.totalPages;
+        const current = currentPage;
+        const delta = 2; // Number of pages to show on each side of the current page
+
+        // If total pages are small, show all
+        if (total <= 7) {
+            return Array.from({ length: total }, (_, i) => i + 1);
+        }
+
+        const pages = [];
+        // Always show the first page
+        pages.push(1);
+
+        // Add left ellipsis if needed
+        if (current - delta > 2) {
+            pages.push('ellipsis');
+        } else {
+            // Add the pages between 2 and the start of the range if no ellipsis is needed
+            for (let i = 2; i < Math.max(2, current - delta); i++) {
+                pages.push(i);
+            }
+        }
+
+        // Determine the range of pages around the current page
+        const start = Math.max(2, current - delta);
+        const end = Math.min(total - 1, current + delta);
+        for (let i = start; i <= end; i++) {
+            pages.push(i);
+        }
+
+        // Add right ellipsis if needed
+        if (current + delta < total - 1) {
+            pages.push('ellipsis');
+        } else {
+            // Add the pages between the end of the range and the last page if no ellipsis is needed
+            for (let i = current + delta + 1; i < total; i++) {
+                pages.push(i);
+            }
+        }
+
+        // Always show the last page
+        pages.push(total);
+        return pages;
+    };
+
+
     return (
         <>
             <Container className="client-list-container">
@@ -126,7 +176,7 @@ const ClientList = () => {
                                         {loading ? (
                                             <Spinner animation="border" size="sm" />
                                         ) : (
-                                            <>Search <FaSearch className="ms-2" /></>
+                                            <span className="responsive-text">Search <FaSearch className="ms-2" /></span>
                                         )}
                                     </Button>
                                 </Col>
@@ -136,99 +186,130 @@ const ClientList = () => {
                 </Card>
 
                 {/* Results Section */}
-                <Card className="shadow-lg border-0">
-                    <Card.Body className="p-">
+                <Card className="shadow-lg border-0 responsive-card">
+                    <Card.Body className="responsive-card-body">
                         <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4">
                             <div className="d-flex align-items-center mb-3 mb-md-0">
                                 <div>
-                                    <h4 className="m-0 fw-semibold text-cstm">Customer Results</h4>
-                                    <p className="m-0 text-muted small">Real-time customer data overview</p>
+                                    <h4 className="m-0 responsive-heading text-cstm">Customer Results</h4>
+                                    <p className="m-0 text-muted responsive-text small">
+                                        Real-time customer data overview
+                                    </p>
                                 </div>
                             </div>
                             <div className="d-flex align-items-center">
                                 <div className="vr mx-3" style={{ height: '2rem' }}></div>
                                 <div className="text-end">
-                                    <div className="text-cstm fw-medium">{pagination?.totalItems} Total Records</div>
-                                    <div className="text-muted small">Page {currentPage} of {pagination?.totalPages}</div>
+                                    <div className="text-cstm fw-medium responsive-text">
+                                        {pagination?.totalItems} Total Records
+                                    </div>
+                                    <div className="text-muted responsive-text small">
+                                        Page {currentPage} of {pagination?.totalPages}
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                         {customers?.length > 0 ? (
                             <div className="table-responsive rounded-3">
-                                <Table  className="align-middle mb-0">
+                                <Table className="align-middle mb-0 customer-table">
                                     <thead className="gradient-header">
                                         <tr>
-                                            <th className="ps-4">#</th>
-                                            <th>Company</th>
-                                            {/* <th>Status</th> */}
-                                            <th>Contact Person</th>
-                                            <th>Mobile</th>
-                                            <th className="pe-4 text-end">Actions</th>
+                                            <th className="ps-4 responsive-text">#</th>
+                                            <th className="responsive-text">Company</th>
+                                            <th className="responsive-text">Contact Person</th>
+                                            <th className="responsive-text">Mobile</th>
+                                            <th className="pe-4 text-end responsive-text">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {customers.map((customer, index) => (
-                                            <tr
-                                                key={customer._id}
-                                                className={`cursor-pointer`} style={{ backgroundColor: customer.prime ? primeColor : customer.blacklisted ? blacklistedColor : "inherit" }}
-                                                onClick={() => handleViewDetails(customer)}
-                                            >
-                                                <td
-                                                    className={`ps-4 fw-medium text-secondary cursor-pointer`}
-                                                    style={{ backgroundColor: customer.prime ? primeColor : customer.blacklisted ? blacklistedColor : "inherit" }}
-                                                >{(currentPage - 1) * limit + index + 1}</td>
-                                                <td className={`cursor-pointer`} style={{ backgroundColor: customer.prime ? primeColor : customer.blacklisted ? blacklistedColor : "inherit" }}>
-                                                    <div className="d-flex align-items-center">
-
-                                                        <div>
-                                                            <div className="fw-semibold">{customer.companyName}</div>
+                                        {customers.map((customer, index) => {
+                                            // Determine row background based on customer status
+                                            const rowBg =
+                                                customer.prime
+                                                    ? primeColor
+                                                    : customer.blacklisted
+                                                        ? blacklistedColor
+                                                        : "inherit";
+                                            return (
+                                                <tr
+                                                    key={customer._id}
+                                                    className="cursor-pointer"
+                                                    style={{ backgroundColor: rowBg }}
+                                                    onClick={() => handleViewDetails(customer)}
+                                                >
+                                                    <td
+                                                        className="ps-4 fw-medium responsive-text cursor-pointer"
+                                                        style={{ backgroundColor: rowBg }}
+                                                    >
+                                                        {(currentPage - 1) * limit + index + 1}
+                                                    </td>
+                                                    <td
+                                                        className="cursor-pointer responsive-text"
+                                                        style={{ backgroundColor: rowBg }}
+                                                    >
+                                                        <div className="d-flex align-items-center">
+                                                            <div>
+                                                                <div className="fw-semibold">{customer.companyName}</div>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                                <td className={`cursor-pointer`} style={{ backgroundColor: customer.prime ? primeColor : customer.blacklisted ? blacklistedColor : "inherit" }} >{customer.contactPerson}</td>
-                                                <td className={`cursor-pointer`} style={{ backgroundColor: customer.prime ? primeColor : customer.blacklisted ? blacklistedColor : "inherit" }} >{customer.mobileNumber}</td>
-
-                                                <td className={`cursor-pointer pe-4 text-end`} style={{ backgroundColor: customer.prime ? primeColor : customer.blacklisted ? blacklistedColor : "inherit" }} >
-                                                    <ButtonGroup className="action-buttons">
-                                                        <Button
-                                                            variant="link"
-                                                            className="btn-icon"
-                                                            onClick={(e) => {
-                                                                e.stopPropagation();
-                                                                handleViewDetails(customer);
-                                                            }}
-                                                        >
-                                                            <FaEye className="text-primary" />
-                                                        </Button>
-                                                        {isAdmin && (
-                                                            <>
-                                                                <Button
-                                                                    variant="link"
-                                                                    className="btn-icon"
-                                                                    onClick={(e) => {
-                                                                        e.stopPropagation();
-                                                                        handleUpdateCustomer(customer);
-                                                                    }}
-                                                                >
-                                                                    <FaEdit className="text-warning" />
-                                                                </Button>
-                                                                <Button
-                                                                    variant="link"
-                                                                    className="btn-icon"
-                                                                    onClick={(e) => {
-                                                                        e.stopPropagation();
-                                                                        handleDeleteCustomer(customer._id);
-                                                                    }}
-                                                                >
-                                                                    <FaTrash className="text-danger" />
-                                                                </Button>
-                                                            </>
-                                                        )}
-                                                    </ButtonGroup>
-                                                </td>
-                                            </tr>
-                                        ))}
+                                                    </td>
+                                                    <td
+                                                        className="cursor-pointer responsive-text"
+                                                        style={{ backgroundColor: rowBg }}
+                                                    >
+                                                        {customer.contactPerson}
+                                                    </td>
+                                                    <td
+                                                        className="cursor-pointer responsive-text"
+                                                        style={{ backgroundColor: rowBg }}
+                                                    >
+                                                        {customer.mobileNumber}
+                                                    </td>
+                                                    <td
+                                                        className="cursor-pointer pe-4 text-end responsive-text"
+                                                        style={{ backgroundColor: rowBg }}
+                                                    >
+                                                        <ButtonGroup className="action-buttons">
+                                                            <Button
+                                                                variant="link"
+                                                                className="btn-icon"
+                                                                onClick={(e) => {
+                                                                    e.stopPropagation();
+                                                                    handleViewDetails(customer);
+                                                                }}
+                                                            >
+                                                                <FaEye className="text-primary" />
+                                                            </Button>
+                                                            {isAdmin && (
+                                                                <>
+                                                                    <Button
+                                                                        variant="link"
+                                                                        className="btn-icon"
+                                                                        onClick={(e) => {
+                                                                            e.stopPropagation();
+                                                                            handleUpdateCustomer(customer);
+                                                                        }}
+                                                                    >
+                                                                        <FaEdit className="text-warning" />
+                                                                    </Button>
+                                                                    <Button
+                                                                        variant="link"
+                                                                        className="btn-icon"
+                                                                        onClick={(e) => {
+                                                                            e.stopPropagation();
+                                                                            handleDeleteCustomer(customer._id);
+                                                                        }}
+                                                                    >
+                                                                        <FaTrash className="text-danger" />
+                                                                    </Button>
+                                                                </>
+                                                            )}
+                                                        </ButtonGroup>
+                                                    </td>
+                                                </tr>
+                                            );
+                                        })}
                                     </tbody>
                                 </Table>
                             </div>
@@ -237,8 +318,10 @@ const ClientList = () => {
                                 <div className="empty-state-icon bg-light-danger text-danger mb-4">
                                     <FaBan className="display-4" />
                                 </div>
-                                <h4 className="text-dark mb-3">No Customers Found</h4>
-                                <p className="text-muted">Try adjusting your search filters to find customers</p>
+                                <h4 className="text-dark mb-3 responsive-heading">No Customers Found</h4>
+                                <p className="text-muted responsive-text">
+                                    Try adjusting your search filters to find customers
+                                </p>
                             </div>
                         )}
 
@@ -253,69 +336,100 @@ const ClientList = () => {
                                         style={{
                                             width: "17px",
                                             height: "17px",
-                                            // borderRadius: "50%",
                                             border: "none",
                                             cursor: "pointer",
                                             padding: "0",
                                         }}
                                         className="shadow-sm"
                                     />
-                                    <span className="fw-semibold text-dark">Prime</span>
+                                    <span className="fw-semibold text-dark responsive-text">Prime</span>
                                 </label>
-
                             </div>
-
                             <div className="d-flex align-items-center gap-2">
                                 <label className="d-flex align-items-center gap-2 cursor-pointer">
-                                    <input type="color"
+                                    <input
+                                        type="color"
                                         value={blacklistedColor}
                                         onChange={(e) => setBlacklistedColor(e.target.value)}
                                         style={{
                                             width: "17px",
                                             height: "17px",
-                                            // borderRadius: "100%",
                                             border: "none",
                                             cursor: "pointer",
                                             padding: "0",
                                         }}
                                         className="shadow-sm"
                                     />
-                                    <span className="text-dark">Blacklisted</span>
+                                    <span className="text-dark responsive-text">Blacklisted</span>
                                 </label>
                             </div>
                         </div>
 
-
                         {/* Pagination */}
                         {pagination?.totalPages > 1 && (
-                            <div className="d-flex flex-column flex-md-row justify-content-between align-items-center ">
-                                <div className="mb-3 mb-md-0 text-muted small">
+                            <div className="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                                <div className="mb-3 mb-md-0 text-muted responsive-text">
                                     Showing {((currentPage - 1) * limit) + 1} - {Math.min(currentPage * limit, pagination.totalItems)} of {pagination.totalItems}
                                 </div>
                                 <Pagination className="mb-0">
                                     <Pagination.Prev
                                         disabled={currentPage === 1}
                                         onClick={() => handlePageChange(currentPage - 1)}
-                                        className="page-link-hover"
+                                        className="page-link-hover responsive-text"
+                                    />
+                                    {getPaginationItems().map((item, index) =>
+                                        item === 'ellipsis' ? (
+                                            <Pagination.Ellipsis key={`ellipsis-${index}`} disabled className="mx-1" />
+                                        ) : (
+                                            <Pagination.Item
+                                                key={item}
+                                                active={item === currentPage}
+                                                onClick={() => handlePageChange(item)}
+                                                className="mx-1 page-link-hover responsive-text"
+                                            >
+                                                <span className="responsive-text">{item}</span>
+                                            </Pagination.Item>
+                                        )
+                                    )}
+                                    <Pagination.Next
+                                        disabled={currentPage === pagination.totalPages}
+                                        onClick={() => handlePageChange(currentPage + 1)}
+                                        className="page-link-hover responsive-text"
+                                    />
+                                </Pagination>
+                            </div>
+                        )}
+
+
+                        {/* {pagination?.totalPages > 1 && (
+                            <div className="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                                <div className="mb-3 mb-md-0 text-muted responsive-text">
+                                    Showing {((currentPage - 1) * limit) + 1} - {Math.min(currentPage * limit, pagination.totalItems)} of {pagination.totalItems}
+                                </div>
+                                <Pagination className="mb-0">
+                                    <Pagination.Prev
+                                        disabled={currentPage === 1}
+                                        onClick={() => handlePageChange(currentPage - 1)}
+                                        className="page-link-hover responsive-text"
                                     />
                                     {Array.from({ length: pagination.totalPages }, (_, index) => (
                                         <Pagination.Item
                                             key={index + 1}
                                             active={index + 1 === currentPage}
                                             onClick={() => handlePageChange(index + 1)}
-                                            className="mx-1 page-link-hover "
+                                            className="mx-1 page-link-hover responsive-text"
                                         >
-                                            {index + 1}
+                                            <span className="responsive-text">{index + 1}</span>
                                         </Pagination.Item>
                                     ))}
                                     <Pagination.Next
                                         disabled={currentPage === pagination.totalPages}
                                         onClick={() => handlePageChange(currentPage + 1)}
-                                        className="page-link-hover"
+                                        className="page-link-hover responsive-text"
                                     />
                                 </Pagination>
                             </div>
-                        )}
+                        )} */}
                     </Card.Body>
                 </Card>
 

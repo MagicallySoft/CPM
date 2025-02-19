@@ -406,6 +406,24 @@ ul{
   /* Background of the scrollbar track */
 }
 
+/* Responsive Placeholder Text */
+::placeholder {
+  font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320)));
+}
+
+::-webkit-input-placeholder {
+  font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320)));
+}
+
+::-moz-placeholder {
+  font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320)));
+}
+
+:-ms-input-placeholder {
+  font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320)));
+}
+
+
 * {
   scroll-behavior: smooth; /* Smooth scrolling when content is scrolled */
 }
@@ -1161,6 +1179,75 @@ a.contact-link:hover {
 }
 
 /* ========================= */
+/* Client List - Table */
+/* ========================= */
+/* Responsive Base Styles */
+.responsive-text {
+  font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320)));
+}
+
+.responsive-heading {
+  font-size: calc(20px + (32 - 20) * ((100vw - 320px) / (1920 - 320)));
+}
+
+/* Card & Card Body */
+.responsive-card {
+  background: #ffffff;
+  border-radius: 10px;
+  /* Custom responsive padding for the card container */
+  padding: calc(15px + (30 - 15) * ((100vw - 320px) / (1920 - 320)));
+}
+
+.responsive-card-body {
+  /* Responsive padding for the card body */
+  padding: calc(15px + (30 - 15) * ((100vw - 320px) / (1920 - 320)));
+}
+
+/* Table & Sticky Header */
+.table-responsive {
+  overflow-y: auto;
+}
+
+.customer-table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 10;
+}
+
+/* Rounded Corners on Table Cells */
+.customer-table tbody tr td:first-child {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+.customer-table tbody tr td:last-child {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+/* Row Styling for Special Customer Status */
+.prime-customer {
+  background-color: rgba(144, 238, 144, 0.67) !important;
+}
+
+.blacklisted-customer {
+  background-color: rgba(255, 0, 0, 0.62) !important;
+  color: white;
+}
+
+/* Empty State Styling */
+.empty-state {
+  padding: calc(20px + (40 - 20) * ((100vw - 320px) / (1920 - 320)));
+}
+
+/* Optional: Adjust page-link hover effects */
+.page-link-hover:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+/* ========================= */
 /* Search Form Styles */
 /* ========================= */
 .search-form {
@@ -1492,6 +1579,11 @@ a.contact-link:hover {
 /* Responsive Base Styles */
 .responsive-text {
   font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320)));
+}
+
+.responsive-card-body .responsive-heading{
+  font-size: calc(20px + (27 - 20) * ((100vw - 320px) / (1920 - 320))) !important;
+
 }
 
 .responsive-heading {
