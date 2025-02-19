@@ -5,7 +5,7 @@ import { HiOutlineCalendarDateRange } from "react-icons/hi2";
 import { LiaUserSecretSolid } from "react-icons/lia";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { registerAdmin } from "../../../redux/actions/auth/authActions";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -57,8 +57,8 @@ const RegisterAdmin = () => {
             <ToastContainer />
             <Row className="w-100 justify-content-center">
                 <Col xs={12}>
-                    <div className="register-card p-4 shadow rounded">
-                        <h2 className="text-center mb-4 text-cstm">
+                    <div className="register-card shadow rounded">
+                        <h2 className="text-center responsive-heading text-cstm">
                             Admin Registration
                         </h2>
                         {error && <Alert variant="danger">{error}</Alert>}
@@ -66,13 +66,17 @@ const RegisterAdmin = () => {
                             <Alert variant="danger">Passwords do not match.</Alert>
                         )}
                         <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                            {/* Full Name Field */}
                             <Form.Group controlId="username" className="mb-3">
-                                <Form.Label className="form-label">Full Name</Form.Label>
+                                <Form.Label className="form-label responsive-text">
+                                    Full Name
+                                </Form.Label>
                                 <InputGroup>
-                                    <InputGroup.Text className="input-icon">
+                                    <InputGroup.Text className="input-icon responsive-icon">
                                         <BsPerson />
                                     </InputGroup.Text>
                                     <Form.Control
+                                        className="responsive-input"
                                         type="text"
                                         name="username"
                                         placeholder="Enter your full name"
@@ -86,13 +90,17 @@ const RegisterAdmin = () => {
                                 </InputGroup>
                             </Form.Group>
 
+                            {/* Email Field */}
                             <Form.Group controlId="email" className="mb-3">
-                                <Form.Label className="form-label">Email Address</Form.Label>
+                                <Form.Label className="form-label responsive-text">
+                                    Email Address
+                                </Form.Label>
                                 <InputGroup>
-                                    <InputGroup.Text className="input-icon">
+                                    <InputGroup.Text className="input-icon responsive-icon">
                                         <BsEnvelope />
                                     </InputGroup.Text>
                                     <Form.Control
+                                        className="responsive-input"
                                         type="email"
                                         name="email"
                                         placeholder="name@company.com"
@@ -103,19 +111,22 @@ const RegisterAdmin = () => {
                                         Please enter a valid email address.
                                     </Form.Control.Feedback>
                                 </InputGroup>
-                                <Form.Text className="text-muted">
+                                <Form.Text className="text-muted responsive-text">
                                     We'll never share your email with anyone.
                                 </Form.Text>
                             </Form.Group>
 
                             {/* Password Field */}
                             <Form.Group controlId="password" className="mb-3">
-                                <Form.Label className="form-label">Password</Form.Label>
+                                <Form.Label className="form-label responsive-text">
+                                    Password
+                                </Form.Label>
                                 <InputGroup>
-                                    <InputGroup.Text className="input-icon">
+                                    <InputGroup.Text className="input-icon responsive-icon">
                                         <BsKey />
                                     </InputGroup.Text>
                                     <Form.Control
+                                        className="responsive-input"
                                         type={showPassword ? "text" : "password"}
                                         name="password"
                                         placeholder="Enter password"
@@ -125,7 +136,7 @@ const RegisterAdmin = () => {
                                     <Button
                                         variant="outline-secondary"
                                         onClick={() => setShowPassword(!showPassword)}
-                                        className="toggle-password-btn"
+                                        className="toggle-password-btn responsive-btn"
                                     >
                                         {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
                                     </Button>
@@ -137,12 +148,15 @@ const RegisterAdmin = () => {
 
                             {/* Confirm Password Field */}
                             <Form.Group controlId="confirmPassword" className="mb-3">
-                                <Form.Label className="form-label">Confirm Password</Form.Label>
+                                <Form.Label className="form-label responsive-text">
+                                    Confirm Password
+                                </Form.Label>
                                 <InputGroup>
-                                    <InputGroup.Text className="input-icon">
+                                    <InputGroup.Text className="input-icon responsive-icon">
                                         <BsKey />
                                     </InputGroup.Text>
                                     <Form.Control
+                                        className="responsive-input"
                                         type={showConfirm ? "text" : "password"}
                                         name="confirmPassword"
                                         placeholder="Confirm password"
@@ -152,7 +166,7 @@ const RegisterAdmin = () => {
                                     <Button
                                         variant="outline-secondary"
                                         onClick={() => setShowConfirm(!showConfirm)}
-                                        className="toggle-password-btn"
+                                        className="toggle-password-btn responsive-btn"
                                     >
                                         {showConfirm ? <FaRegEyeSlash /> : <FaRegEye />}
                                     </Button>
@@ -162,31 +176,39 @@ const RegisterAdmin = () => {
                                 </InputGroup>
                             </Form.Group>
 
+                            {/* Subscription Plan Field */}
                             <Form.Group controlId="subscriptionPlan" className="mt-3">
-                                <Form.Label>Subscription Plan</Form.Label>
+                                <Form.Label className="responsive-text">
+                                    Subscription Plan
+                                </Form.Label>
                                 <InputGroup>
-                                <InputGroup.Text className="input-icon">
-                                <HiOutlineCalendarDateRange />
-                                </InputGroup.Text>
-                                <Form.Control
-                                    as="select"
-                                    name="subscriptionPlan"
-                                    onChange={handleChange}
-                                    required
-                                >
-                                    <option value="">Select Plan</option>
-                                    <option value="monthly">Monthly</option>
-                                    <option value="yearly">Yearly</option>
-                                </Form.Control>
-                                <Form.Control.Feedback type="invalid">
-                                    Subscription plan is required.
-                                </Form.Control.Feedback>
+                                    <InputGroup.Text className="input-icon responsive-icon">
+                                        <HiOutlineCalendarDateRange />
+                                    </InputGroup.Text>
+                                    <Form.Control
+                                        as="select"
+                                        name="subscriptionPlan"
+                                        onChange={handleChange}
+                                        required
+                                        className="responsive-input "
+                                    >
+                                        <option value=""><span className="responsive-text">Select Plan</span></option>
+                                        <option value="monthly">Monthly</option>
+                                        <option value="yearly">Yearly</option>
+                                    </Form.Control>
+                                    <Form.Control.Feedback type="invalid">
+                                        Subscription plan is required.
+                                    </Form.Control.Feedback>
                                 </InputGroup>
                             </Form.Group>
 
+                            {/* Payment Details Field */}
                             <Form.Group controlId="paymentDetails" className="mt-3">
-                                <Form.Label>Payment Details</Form.Label>
+                                <Form.Label className="responsive-text">
+                                    Payment Details
+                                </Form.Label>
                                 <Form.Control
+                                    className="responsive-input"
                                     type="text"
                                     name="paymentDetails"
                                     placeholder="Enter payment details"
@@ -198,10 +220,19 @@ const RegisterAdmin = () => {
                                 </Form.Control.Feedback>
                             </Form.Group>
 
-                            <Button type="submit" className="login-btn login-btn-primary mt-4 w-100" disabled={loading}>
+                            <Button
+                                type="submit"
+                                className="login-btn login-btn-primary mt-4 w-100 responsive-btn"
+                                disabled={loading}
+                            >
                                 {loading ? <Spinner animation="border" size="sm" /> : "Register"}
                             </Button>
                         </Form>
+                        <div className="mt-3 text-center">
+                            <Link to="/login" className="responsive-text">
+                                Have an account?
+                            </Link>
+                        </div>
                     </div>
                 </Col>
             </Row>

@@ -1,4 +1,31 @@
-/* Container for the registration form */
+/* Responsive Base Styles */
+.responsive-text {
+  font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320)));
+}
+
+.responsive-heading {
+  font-size: calc(20px + (32 - 20) * ((100vw - 320px) / (1920 - 320)));
+}
+
+.responsive-input {
+  padding-top: calc(7px + (8 - 7) * ((100vw - 320px) / (1920 - 320))) !important;
+  padding-bottom: calc(7px + (8 - 7) * ((100vw - 320px) / (1920 - 320))) !important;
+  padding-right: calc(15px + (30 - 15) * ((100vw - 320px) / (1920 - 320))) !important;
+  padding-left: calc(15px + (30 - 15) * ((100vw - 320px) / (1920 - 320))) !important;
+  font-size: inherit;
+}
+
+.responsive-icon {
+  font-size: calc(16px + (17 - 16) * ((100vw - 320px) / (1920 - 320)));
+  padding: 0 calc(8px + (16 - 8) * ((100vw - 320px) / (1920 - 320))) !important;
+}
+
+.responsive-btn {
+  font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320)));
+  padding: calc(8px + (10 - 8) * ((100vw - 320px) / (1920 - 320))) !important;
+}
+
+/* General Form & Container Styles */
 .register-container {
   height: 100vh;
   display: flex;
@@ -8,18 +35,14 @@
   padding: 20px;
 }
 
-/* Registration Box */
-.register-box {
-  position: relative;
-  max-width: 100%;
-  width: 400px;
-  padding: 20px;
+.register-card {
+  background: #ffffff;
   border-radius: 10px;
-  background: white;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  /* Custom padding replacing Bootstrap classes */
+  padding: calc(15px + (30 - 15) * ((100vw - 320px) / (1920 - 320)));
 }
 
-/* Tab Styles */
 .register-tabs {
   display: flex;
   border-bottom: 2px solid #e9ecef;
@@ -42,7 +65,6 @@
   color: #007bff;
 }
 
-/* Active Tab Indicator */
 .register-tabs .active-indicator {
   position: absolute;
   bottom: 0;
@@ -53,26 +75,41 @@
   transition: transform 0.3s ease-in-out;
 }
 
-/* Fade-in animation */
 .form-container {
   animation: fadeIn 0.3s ease-in-out;
 }
 
 @keyframes fadeIn {
   from {
-      opacity: 0;
-      transform: translateX(20px);
+    opacity: 0;
+    transform: translateX(20px);
   }
   to {
-      opacity: 1;
-      transform: translateX(0);
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 
-/* Responsive Styles */
 @media (max-width: 480px) {
-  .register-box {
-      width: 100%;
-      padding: 15px;
+  .register-card {
+    width: 100%;
+    padding: calc(10px + (30 - 15) * ((100vw - 320px) / (1920 - 320)));
   }
+}
+
+/* Responsive Placeholder Text */
+.responsive-input::placeholder {
+  font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320)));
+}
+
+.responsive-input::-webkit-input-placeholder {
+  font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320)));
+}
+
+.responsive-input::-moz-placeholder {
+  font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320)));
+}
+
+.responsive-input:-ms-input-placeholder {
+  font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320)));
 }

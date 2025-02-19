@@ -8,24 +8,20 @@ const Register = () => {
   const [activeTab, setActiveTab] = useState("company");
 
   return (
-    <Container
-      fluid
-      className="d-flex align-items-center justify-content-center register-container vh-100"
-    >
+    <Container fluid className="d-flex align-items-center justify-content-center register-container min-vh-100">
       <Row className="justify-content-center w-100">
         <Col xs={12} sm={10} md={8} lg={5}>
-          <div className="register-card p-4 shadow-lg rounded bg-white">
-            {/* <h2 className="text-center mb-4">Create Account</h2> */}
+          <div className="register-card shadow rounded">
             {/* Tab Header */}
             <div className="register-tabs">
               <div
-                className={`tab ${activeTab === "company" ? "active" : ""}`}
+                className={`tab responsive-text ${activeTab === "company" ? "active" : ""}`}
                 onClick={() => setActiveTab("company")}
               >
                 Company
               </div>
               <div
-                className={`tab ${activeTab === "staff" ? "active" : ""}`}
+                className={`tab responsive-text ${activeTab === "staff" ? "active" : ""}`}
                 onClick={() => setActiveTab("staff")}
               >
                 Staff
@@ -39,7 +35,11 @@ const Register = () => {
             </div>
             {/* Form Content */}
             <div className="form-container fade-in">
-              {activeTab === "company" ? <RegisterAdmin /> : <RegisterStaff />}
+              {activeTab === "company" ? (
+                <RegisterAdmin />
+              ) : (
+                <RegisterStaff />
+              )}
             </div>
           </div>
         </Col>

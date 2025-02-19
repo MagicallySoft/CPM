@@ -74,7 +74,7 @@ const AddCustomFieldButton = () => {
 
   return (
     <>
-      <Button className="add-field-button" onClick={() => setShow(true)}>
+      <Button className="add-field-button m-1" onClick={() => setShow(true)}>
         <FaPlus /> Add Custom Field
       </Button>
 

@@ -203,7 +203,7 @@ const ClientForm = () => {
     return (
         <Container>
             <ToastContainer position="top-right" autoClose={3000} />
-            <div className="mt-1 d-flex justify-content-between">
+            <div className="mt-1 d-flex flex-wrap  justify-content-between">
             <AddCustomFieldButton />
             <FileUploadButton  />
             </div>

@@ -39,7 +39,7 @@ const FileUploadButton = () => {
   };
 
   return (
-    <div className="file-upload-container">
+    <div className="file-upload-container m-1">
       {/* Hidden file input */}
       <input
         type="file"
@@ -49,9 +49,9 @@ const FileUploadButton = () => {
         style={{ display: "none" }}
       />
       <Button
-        variant="primary"
+        // variant="primary"
         onClick={handleClick}
-        className="file-upload-btn"
+        className="file-upload-btn bg-btn"
         disabled={isUploading}
       >
         {isUploading ? (

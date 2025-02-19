@@ -161,7 +161,9 @@ const Login = () => {
                 )}
               </Button>
             </Form>
-            <Link to="/register" className="text-center ">New User?</Link>
+            <div className="mt-3">
+            <Link to="/register" className="text-center">New User?</Link>
+            </div>
           </div>
         </Col>
       </Row>
