@@ -223,7 +223,7 @@ const ClientList = () => {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {customers.map((customer, index) => {
+                                        {customers?.map((customer, index) => {
                                             // Determine row background based on customer status
                                             const rowBg =
                                                 customer.prime
@@ -377,7 +377,7 @@ const ClientList = () => {
                                         onClick={() => handlePageChange(currentPage - 1)}
                                         className="page-link-hover responsive-text"
                                     />
-                                    {getPaginationItems().map((item, index) =>
+                                    {getPaginationItems()?.map((item, index) =>
                                         item === 'ellipsis' ? (
                                             <Pagination.Ellipsis key={`ellipsis-${index}`} disabled className="mx-1" />
                                         ) : (

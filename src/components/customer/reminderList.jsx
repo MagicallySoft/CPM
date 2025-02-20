@@ -82,7 +82,7 @@ const ReminderList = () => {
             'Details'
         ];
 
-        const data = flattenDataForExport(reminders).map(item => [
+        const data = flattenDataForExport(reminders)?.map(item => [
             item['Company Name'],
             item['Contact Person'],
             item['Mobile Number'],
@@ -166,7 +166,7 @@ const ReminderList = () => {
                 </div>
             ) : (
                 <Row className="g-4">
-                    {reminders.length > 0 ? reminders.map(customer => (
+                    {reminders?.length > 0 ? reminders?.map(customer => (
                         <Col key={customer._id} xs={12} lg={6} xl={4}>
                             <Card className="h-100 shadow-sm">
                                 <Card.Body>
@@ -174,7 +174,7 @@ const ReminderList = () => {
                                         <div>
                                             <h5 className="mb-1">{customer.companyName}</h5>
                                             <p className="text-muted mb-0">{customer.contactPerson}</p>
-                                            <div className="d-flex gap-2">
+                                            <div className="d-flex flex-wrap gap-2">
                                                 <a
                                                     href={`tel:${customer.mobileNumber}`}
                                                     className="text-decoration-none text-primary"
