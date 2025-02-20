@@ -9,7 +9,7 @@ const UpdateCustomerModal = ({ show, handleClose, customerData }) => {
   const { loading } = useSelector((state) => state.customer || []);
   const { customFields } = useSelector((state) => state.customField) || { customFields: [] };
   const { subadmins } = useSelector((state) => state.user) || { subadmins: [] };
-  console.log(subadmins);
+  // console.log(subadmins);
   
   const [formData, setFormData] = useState({});
 

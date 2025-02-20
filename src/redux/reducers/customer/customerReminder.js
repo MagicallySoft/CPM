@@ -11,7 +11,7 @@ const customerReminderInitialState = {
         return { ...state, loading: true };
       case "FETCH_CUSTOMERS_REMINDER_SUCCESS":
         return {
-          ...state,
+          // ...state,
           loading: false,
           reminders: action.payload
         };

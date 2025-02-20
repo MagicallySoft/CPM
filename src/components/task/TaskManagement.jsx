@@ -393,7 +393,7 @@ const TaskManagement = () => {
                 className="mt-2 rounded-pill"
               >
                 <option value="">Select Team Member</option>
-                {filteredUsers.map((user) => (
+                {filteredUsers?.map((user) => (
                   <option key={user._id} value={user._id}>
                     {user.username}
                   </option>

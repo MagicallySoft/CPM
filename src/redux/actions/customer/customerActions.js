@@ -29,7 +29,7 @@ export const searchCustomer = (searchQuery, page = 1, limit = 10) => async (disp
     const { data } = await axiosInstance.get("/customer/customer", {
       params: { ...searchQuery, page, limit },
     });
-    // console.log(data);
+    // console.log("searchCustomer------>\n",data);
     
     dispatch({
       type: "FETCH_CUSTOMERS_SUCCESS",
@@ -112,7 +112,7 @@ export const getCustomFields = () => async (dispatch) => {
     dispatch({ type: "FETCH_CUSTOM_FIELDS_REQUEST" });
 
     const { data } = await axiosInstance.get("/customer/customfield");
-    // console.log(data);
+    // console.log("getCustomFields--->\n",data);
     
     dispatch({ type: "FETCH_CUSTOM_FIELDS_SUCCESS", payload: data.data });
   } catch (error) {
@@ -166,7 +166,7 @@ export const fetchReminders = (searchQuery) => async (dispatch) => {
     const { data } = await axiosInstance.get("/customer/customer/product", {
       params: { ...searchQuery },
     });
-    // console.log(data.data.customers);
+    // console.log(data);
     const transformedReminders = data.data.customers;
 
     dispatch({

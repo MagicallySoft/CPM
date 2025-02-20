@@ -57,7 +57,7 @@ const DashboardLayout = ({ children }) => {
       { path: "/generateCode", icon: <FaCode />, label: "Generate Code" },
     );
   }
-  if (user?.role === "user" ) {
+  if (user?.role === "employee" ) {
     menuItems.push(
       { path: "/taskslist", icon: <GoTasklist />, label: "Task" },
     )

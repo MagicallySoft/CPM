@@ -31,10 +31,10 @@ function LayoutWrapper() {
       <Routes>
         <Route path="/generateCode" element={<PrivateRoute element={<GenerateCode />} allowedRoles={["admin", "superadmin"]} />} />
         <Route path="/clientform" element={<PrivateRoute element={<ClientForm />} allowedRoles={["admin", "superadmin"]} />} />
-        <Route path="/client" element={<PrivateRoute element={<ClientList />} allowedRoles={["user", "admin", "superadmin"]} />} />
-        <Route path="/reminder" element={<PrivateRoute element={<ReminderList />} allowedRoles={["user", "admin", "superadmin"]} />} />
+        <Route path="/client" element={<PrivateRoute element={<ClientList />} allowedRoles={["employee", "admin", "superadmin"]} />} />
+        <Route path="/reminder" element={<PrivateRoute element={<ReminderList />} allowedRoles={["employee", "admin", "superadmin"]} />} />
         <Route path="/customfield" element={<PrivateRoute element={<AdminCustomFieldsList />} allowedRoles={["admin", "superadmin"]} />} />
-        <Route path="/taskslist" element={<PrivateRoute element={<UserTasks />} allowedRoles={["user"]} />} />
+        <Route path="/taskslist" element={<PrivateRoute element={<UserTasks />} allowedRoles={["employee"]} />} />
         <Route path="/task" element={<PrivateRoute element={<TaskManagement />} allowedRoles={["admin", "superadmin"]} />} />
         <Route path="/tasklist" element={<PrivateRoute element={<TaskList />} allowedRoles={["admin", "superadmin"]} />} />
         <Route path="/emlpoyeelist" element={<PrivateRoute element={<Userlist />} allowedRoles={["admin", "superadmin"]} />} />

@@ -68,7 +68,7 @@ const AddCustomFieldButton = () => {
       setShow(false);
       setFieldData({ fieldName: "", fieldType: "text", isRequired: false, options: [], isMultiSelect: false });
     } catch (error) {
-      toast.error("Failed to add custom field");
+      // toast.error("Failed to add custom field");
     }
   };
 

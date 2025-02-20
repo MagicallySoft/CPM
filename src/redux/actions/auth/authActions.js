@@ -23,6 +23,7 @@ export const registerStaff = (staffData, navigate) => async (dispatch) => {
   try {
     dispatch({ type: "REGISTER_STAFF_REQUEST" });
     const { data } = await axiosInstance.post("/auth/register", staffData);
+        
     dispatch({ type: "REGISTER_STAFF_SUCCESS", payload: data });
     toast.success("Staff registration successful!");
     navigate("/login"); // Redirect after registration
@@ -39,7 +40,7 @@ export const loginUser = (credentials, navigate) => async (dispatch) => {
     dispatch({ type: "LOGIN_REQUEST" });
 
     const { data } = await axiosInstance.post("/auth/login", credentials);
-    // console.log(data);
+    console.log(data);
 
     let token = data?.data?.token;
     let user = data?.data?.userData;
@@ -52,7 +53,7 @@ export const loginUser = (credentials, navigate) => async (dispatch) => {
 
       axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
-      toast.success("Login successfull!");  
+      toast.success("Login successfull!");
       navigate("/");
     } else {
       dispatch({ type: "LOGIN_FAIL", payload: "Invalid credentials" });
@@ -79,15 +80,27 @@ export const loginUser = (credentials, navigate) => async (dispatch) => {
   }
 };
 
-export const logoutUser = () => (dispatch, navigate) => {
-  localStorage.removeItem("userToken");
-  localStorage.removeItem("userData");
-  delete axiosInstance.defaults.headers.common["Authorization"];
+export const logoutUser = () => async (dispatch, navigate) => {
+  try {
+    // const data = await axiosInstance.post("/auth/logout");
+    
+    // Remove token and user data from local storage
+    localStorage.removeItem("userToken");
+    localStorage.removeItem("userData");
 
-  dispatch({ type: "LOGOUT" });
-  navigate("/");
-  // window.location.href = "/login";
+    // Remove default Authorization header from axios
+    delete axiosInstance.defaults.headers.common["Authorization"];
+    
+    console.log(data);
+
+    dispatch({ type: "LOGOUT" });
+    navigate("/login");
+  } catch (error) {
+    const errorMessage = error.response?.data?.message || "Failed";
+    toast.error(errorMessage);
+  }
 };
+
 
 export const setUserFromLocalStorage = (userData) => {
   return {
