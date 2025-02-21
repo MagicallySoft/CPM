@@ -15,7 +15,7 @@ export const customerReducer = (state = customerInitialState, action) => {
       return { ...state, loading: true };
     case "FETCH_CUSTOMERS_SUCCESS":
       return {
-        ...state,
+        // ...state,
         loading: false,
         customers: action.payload.customers,
         pagination: action.payload.pagination || { page: 1, totalPages: 1 }, // Default fallback

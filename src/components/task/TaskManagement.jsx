@@ -101,7 +101,7 @@
 //                   </div>
 //                   <Card.Text>{task.description}</Card.Text>
 //                   <Card.Text><strong>Assigned To:</strong> {task.assignedTo?.username}</Card.Text>
-//                   <Card.Text><strong>Deadline:</strong> {new Date(task.deadline).toLocaleDateString()}</Card.Text>
+//                   <Card.Text><strong>Deadline:</strong> {new Date(task.deadline).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}</Card.Text>
 //                   <Button variant="warning" size="sm" onClick={() => setTaskData(task)}>
 //                     <FaEdit /> Edit
 //                   </Button>{" "}
@@ -311,7 +311,7 @@ const TaskManagement = () => {
                     <div className="d-flex align-items-center">
                       <FaCalendar className="me-2 text-muted" />
                       <span className="small">
-                        {new Date(task.deadline).toLocaleDateString()}
+                        {new Date(task.deadline).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}
                       </span>
                     </div>
                   </div>

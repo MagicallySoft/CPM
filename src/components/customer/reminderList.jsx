@@ -28,8 +28,8 @@ const flattenDataForExport = (reminders) => {
             'Mobile Number': customer.mobileNumber,
             'Email': customer.email,
             'Product Name': product.productName,
-            'Purchase Date': new Date(product.purchaseDate).toLocaleDateString(),
-            'Renewal Date': new Date(product.renewalDate).toLocaleDateString(),
+            'Purchase Date': new Date(product.purchaseDate).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }),
+            'Renewal Date': new Date(product.renewalDate).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' }),
             'Product Details': product.details
         })) || []
     );
@@ -49,7 +49,21 @@ const ReminderList = () => {
         setSearchQuery(prev => ({ ...prev, [name]: value }));
     };
 
-    const handleSearch = (e) => { e.preventDefault(); dispatch(fetchReminders(searchQuery)) };
+    const handleSearch = (e) => {
+        e.preventDefault();
+        if (searchQuery.reminderType === "custom") {
+            if (!searchQuery.startDate || !searchQuery.endDate) {
+              // Optionally, you could show an alert or set an error message here
+              return;
+            }
+            // Also check that endDate is not earlier than startDate
+            if (searchQuery.endDate < searchQuery.startDate) {
+              return;
+            }
+          }
+        dispatch(fetchReminders(searchQuery));
+      };
+      
 
     const calculatePriority = (renewalDate) => {
         const today = new Date();
@@ -101,7 +115,7 @@ const ReminderList = () => {
             margin: { top: 20 }
         });
 
-        doc.text(`Renewal Report - ${new Date().toLocaleDateString()}`, 14, 15);
+        doc.text(`Renewal Report - ${new Date().toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}`, 14, 15);
         doc.save(`${formatFileName('Renewals')}.pdf`);
     };
 
@@ -143,7 +157,12 @@ const ReminderList = () => {
                                         <Form.Control type="date" name="startDate" onChange={handleChange} />
                                     </Col>
                                     <Col md={3}>
-                                        <Form.Control type="date" name="endDate" onChange={handleChange} />
+                                        <Form.Control
+                                            type="date"
+                                            name="endDate"
+                                            onChange={handleChange}
+                                            min={searchQuery.startDate || ''}
+                                        />
                                     </Col>
                                 </>
                             )}
@@ -210,7 +229,7 @@ const ReminderList = () => {
                                                             <div className="fw-bold">{product.productName}</div>
                                                             <small className="text-muted">
                                                                 <FaCalendarAlt className="me-1" />
-                                                                {new Date(product.renewalDate).toLocaleDateString()}
+                                                                {new Date(product.renewalDate).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}
                                                             </small>
                                                         </div>
                                                         <Badge bg={priority.variant} className="ms-2">
@@ -247,13 +266,13 @@ const ReminderList = () => {
                                 <ListGroup.Item className="d-flex justify-content-between">
                                     <span>Purchase Date:</span>
                                     <span className="text-muted">
-                                        {new Date(selectedProduct.purchaseDate).toLocaleDateString()}
+                                        {new Date(selectedProduct.purchaseDate).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}
                                     </span>
                                 </ListGroup.Item>
                                 <ListGroup.Item className="d-flex justify-content-between">
                                     <span>Renewal Date:</span>
                                     <span className="fw-bold text-primary">
-                                        {new Date(selectedProduct.renewalDate).toLocaleDateString()}
+                                        {new Date(selectedProduct.renewalDate).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}
                                     </span>
                                 </ListGroup.Item>
                                 <ListGroup.Item>

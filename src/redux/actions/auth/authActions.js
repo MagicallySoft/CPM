@@ -40,7 +40,7 @@ export const loginUser = (credentials, navigate) => async (dispatch) => {
     dispatch({ type: "LOGIN_REQUEST" });
 
     const { data } = await axiosInstance.post("/auth/login", credentials);
-    console.log(data);
+    // console.log(data);
 
     let token = data?.data?.token;
     let user = data?.data?.userData;

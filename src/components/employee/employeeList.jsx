@@ -47,7 +47,7 @@
 //                     <td>{user.username}</td>
 //                     <td>{user.email}</td>
 //                     <td>{user.designation}</td>
-//                     <td>{new Date(user.createdAt).toLocaleDateString()}</td>
+//                     <td>{new Date(user.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}</td>
 //                   </tr>
 //                 ))
 //               ) : (
@@ -119,7 +119,7 @@ const UserList = () => {
                       <Card.Text>
                         <p><FaEnvelope className="me-2 text-secondary" /> {user.email}</p>
                         <p><FaUserTie className="me-2 text-info" /> {user.designation}</p>
-                        <p><FaCalendarAlt className="me-2 text-danger" /> {new Date(user.createdAt).toLocaleDateString()}</p>
+                        <p><FaCalendarAlt className="me-2 text-danger" /> {new Date(user.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}</p>
                       </Card.Text>
                     </Card.Body>
                   </Card>
@@ -157,7 +157,7 @@ const UserList = () => {
                       <Card.Text>
                         <p><FaEnvelope className="me-2 text-secondary" /> {user.email}</p>
                         {/* <p><FaUserTie className="me-2 text-info" /> {user.designation}</p> */}
-                        <p><FaCalendarAlt className="me-2 text-danger" /> {new Date(user.createdAt).toLocaleDateString()}</p>
+                        <p><FaCalendarAlt className="me-2 text-danger" /> {new Date(user.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}</p>
                       </Card.Text>
                     </Card.Body>
                   </Card>

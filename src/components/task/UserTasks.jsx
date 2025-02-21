@@ -57,7 +57,7 @@
 //                               <Card.Title>{task.title}</Card.Title>
 //                               <Card.Text>{task.description}</Card.Text>
 //                               <Card.Text className="text-muted">
-//                                 Deadline: {new Date(task.deadline).toLocaleDateString()}
+//                                 Deadline: {new Date(task.deadline).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}
 //                               </Card.Text>
 //                               {status !== "Completed" && (
 //                                 <div className="d-flex justify-content-between">

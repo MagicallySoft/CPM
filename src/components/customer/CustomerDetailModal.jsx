@@ -123,11 +123,18 @@ const CustomerDetailModal = ({ show, onHide, customer }) => {
                 </tr>
                 <tr>
                   <td><strong>Purchase Date:</strong></td>
-                  <td>{new Date(selectedProduct.purchaseDate).toLocaleDateString()}</td>
+                  {/* <td>{new Date(selectedProduct.purchaseDate).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}</td> */}
+                  <td>
+                    {new Date(selectedProduct.purchaseDate)
+                      .toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}
+                  </td>
                 </tr>
                 <tr>
                   <td><strong>Renewal Date:</strong></td>
-                  <td>{new Date(selectedProduct.renewalDate).toLocaleDateString()}</td>
+                  <td>
+                    {new Date(selectedProduct.renewalDate)
+                      .toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}
+                  </td>
                 </tr>
                 <tr>
                   <td><strong>Details:</strong></td>
