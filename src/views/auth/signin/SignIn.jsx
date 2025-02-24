@@ -24,7 +24,7 @@ const Signin = () => {
           <Card className="borderless text-center">
             <Card.Body>
               {/*   */}
-              <Login/>
+              <Login />
 
               {/* <AuthLogin /> */}
               <p className="mb-2 text-muted">
@@ -39,6 +39,7 @@ const Signin = () => {
                   Signup
                 </NavLink>
               </p>
+
               {/* <Alert variant="primary" className="text-start mt-3">
                 User:
                 <CopyToClipboard text="info@codedthemes.com">
@@ -55,9 +56,24 @@ const Signin = () => {
                 </CopyToClipboard>
               </Alert> */}
             </Card.Body>
+
+
           </Card>
         </div>
       </div>
+      <div style={{ position: 'relative' }}>
+        {/* Other content here */}
+        {/* <span
+          style={{ position: 'absolute', right: 20, bottom: 10 }}
+          className="d-flex flex-wrap justify-content-center align-items-center mb-1"
+        >
+          powered by&nbsp;
+          <a href="https://magicallysoft.com/" className="m-0 text-cstm text-decoration-none fw-bold">
+            MagcallySoft
+          </a>
+        </span> */}
+      </div>
+
     </React.Fragment>
   );
 };

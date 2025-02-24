@@ -118,7 +118,7 @@ const UserList = () => {
                       </Card.Title>
                       <Card.Text>
                         <p><FaEnvelope className="me-2 text-secondary" /> {user.email}</p>
-                        <p><FaUserTie className="me-2 text-info" /> {user.designation}</p>
+                        <p><FaUserTie className="me-2 text-info" /> {user.role.designation}</p>
                         <p><FaCalendarAlt className="me-2 text-danger" /> {new Date(user.createdAt).toLocaleDateString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric' })}</p>
                       </Card.Text>
                     </Card.Body>

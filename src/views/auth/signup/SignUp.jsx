@@ -24,11 +24,11 @@ const SignUp = () => {
           <Card className="borderless text-center">
             <Card.Body>
               {/*   */}
-              <Register/>
+              <Register />
 
               {/* <AuthLogin /> */}
               <p className="mb-2 text-muted">
-              Already have an account?{' '}
+                Already have an account?{' '}
                 <NavLink to="/login" className="f-w-400">
                   SingIn
                 </NavLink>
@@ -58,6 +58,15 @@ const SignUp = () => {
           </Card>
         </div>
       </div>
+      {/* <span
+        style={{ position: 'absolute', right: 20, bottom: 10 }}
+        className="d-flex flex-wrap justify-content-center align-items-center mb-1"
+      >
+        powered by&nbsp;
+        <a href="https://magicallysoft.com/" className="m-0 text-cstm text-decoration-none fw-bold">
+          MagcallySoft
+        </a>
+      </span> */}
     </React.Fragment>
   );
 };

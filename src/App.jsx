@@ -21,8 +21,8 @@ import 'bootstrap/dist/js/bootstrap.bundle.js'
 function LayoutWrapper() {
   const location = useLocation();
   const hideLayout = location.pathname === "/login" || location.pathname === "/register";
- 
-  
+
+
   return hideLayout ? (
     <Routes>
       {/* <Route path="/login" element={<Login />} /> */}
@@ -49,8 +49,26 @@ function LayoutWrapper() {
 
 function App() {
   return (
+    // <BrowserRouter>
+    //   <LayoutWrapper />
+    // </BrowserRouter>
     <BrowserRouter>
-      <LayoutWrapper />
+      {/* Container with relative positioning */}
+      <div style={{ position: "relative", minHeight: "100vh" }}>
+        <LayoutWrapper />
+        <span
+          style={{ position: "absolute", right: 20, bottom: 10 }}
+          className="d-flex flex-wrap justify-content-center align-items-center mb-1"
+        >
+          powered by&nbsp;
+          <a
+            href="https://magicallysoft.com/"
+            className="m-0 text-cstm text-decoration-none fw-bold"
+          >
+            MagcallySoft
+          </a>
+        </span>
+      </div>
     </BrowserRouter>
   );
 }
