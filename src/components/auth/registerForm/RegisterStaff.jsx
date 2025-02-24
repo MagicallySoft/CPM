@@ -61,19 +61,20 @@ const RegisterStaff = () => {
   };
 
   return (
-    <Container fluid className="d-flex align-items-center justify-content-center">
+    <>
+    {/* <Container fluid className="d-flex align-items-center justify-content-center"> */}
       <ToastContainer />
-      <div className="w-100 justify-content-center">
-        <Col xs={12}>
-          <div className="register-card shadow rounded">
-            <h2 className="text-center mb-4 responsive-heading text-cstm">
+      {/* <div className="w-100 justify-content-center"> */}
+        {/* <Col xs={12}> */}
+          <div className="register-card  rounded">
+            {/* <h2 className="text-center mb-4 responsive-heading text-cstm">
               Staff Registration
-            </h2>
+            </h2> */}
             {error && <Alert variant="danger">{error}</Alert>}
             {passwordMismatch && (
               <Alert variant="danger">Passwords do not match.</Alert>
             )}
-            <Form noValidate validated={validated} onSubmit={handleSubmit}>
+            <Form noValidate validated={validated} onSubmit={handleSubmit} className="text-start">
               {/* Full Name Field */}
               <Form.Group controlId="username" className="mb-3">
                 <Form.Label className="form-label responsive-text">
@@ -212,18 +213,19 @@ const RegisterStaff = () => {
                 className="login-btn login-btn-primary mt-4 w-100 responsive-btn"
                 disabled={loading}
               >
-                {loading ? <Spinner animation="border" size="sm" /> : "Register"}
+                {loading ? <Spinner animation="border" size="sm" /> : "SignUp"}
               </Button>
             </Form>
-            <div className="mt-3 text-center">
+            {/* <div className="mt-3 text-center">
               <Link to="/login" className="responsive-text">
                 Have an account?
               </Link>
-            </div>
+            </div> */}
           </div>
-        </Col>
-      </div>
-    </Container>
+        {/* </Col> */}
+      {/* </div> */}
+    {/* </Container> */}
+    </>
   );
 };
 

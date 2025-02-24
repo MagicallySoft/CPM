@@ -53,20 +53,24 @@ const RegisterAdmin = () => {
     };
 
     return (
-        <Container fluid className="d-flex align-items-center justify-content-center">
+        <>
+        {/* <Container fluid className="d-flex align-items-center justify-content-center"> */}
             <ToastContainer />
-            <div className="w-100 justify-content-center">
-                <Col xs={12}>
-                    <div className="register-card shadow rounded">
-                        <h2 className="text-center responsive-heading text-cstm">
+            {/* <div className="w-100 justify-content-center"> */}
+                {/* <Col xs={12}> */}
+                    <div className="register-card  rounded">
+                    
+                        {/* <h2 className="text-center responsive-heading text-cstm">
                             Admin Registration
-                        </h2>
+                        </h2> */}
                         {error && <Alert variant="danger">{error}</Alert>}
                         {passwordMismatch && (
                             <Alert variant="danger">Passwords do not match.</Alert>
                         )}
-                        <Form noValidate validated={validated} onSubmit={handleSubmit}>
+                        <Form noValidate validated={validated} onSubmit={handleSubmit} className="text-start">
+                            <Row>
                             {/* Full Name Field */}
+                            {/* <Col md={6}> */}
                             <Form.Group controlId="username" className="mb-3">
                                 <Form.Label className="form-label responsive-text">
                                     Full Name
@@ -89,8 +93,9 @@ const RegisterAdmin = () => {
                                     </Form.Control.Feedback>
                                 </InputGroup>
                             </Form.Group>
-
+                            {/* </Col> */}
                             {/* Email Field */}
+                            {/* <Col md={6}> */}
                             <Form.Group controlId="email" className="mb-3">
                                 <Form.Label className="form-label responsive-text">
                                     Email Address
@@ -115,8 +120,10 @@ const RegisterAdmin = () => {
                                     We'll never share your email with anyone.
                                 </Form.Text>
                             </Form.Group>
+                            {/* </Col> */}
 
                             {/* Password Field */}
+                            {/* <Col md={6}> */}
                             <Form.Group controlId="password" className="mb-3">
                                 <Form.Label className="form-label responsive-text">
                                     Password
@@ -145,8 +152,10 @@ const RegisterAdmin = () => {
                                     </Form.Control.Feedback>
                                 </InputGroup>
                             </Form.Group>
+                            {/* </Col> */}
 
                             {/* Confirm Password Field */}
+                            {/* <Col md={6}> */}
                             <Form.Group controlId="confirmPassword" className="mb-3">
                                 <Form.Label className="form-label responsive-text">
                                     Confirm Password
@@ -175,8 +184,10 @@ const RegisterAdmin = () => {
                                     </Form.Control.Feedback>
                                 </InputGroup>
                             </Form.Group>
+                            {/* </Col> */}
 
                             {/* Subscription Plan Field */}
+                            {/* <Col md={6}> */}
                             <Form.Group controlId="subscriptionPlan" className="mt-3">
                                 <Form.Label className="responsive-text">
                                     Subscription Plan
@@ -201,8 +212,10 @@ const RegisterAdmin = () => {
                                     </Form.Control.Feedback>
                                 </InputGroup>
                             </Form.Group>
+                            {/* </Col> */}
 
                             {/* Payment Details Field */}
+                            {/* <Col md={6}> */}
                             <Form.Group controlId="paymentDetails" className="mt-3">
                                 <Form.Label className="responsive-text">
                                     Payment Details
@@ -219,24 +232,26 @@ const RegisterAdmin = () => {
                                     Payment details are required.
                                 </Form.Control.Feedback>
                             </Form.Group>
-
+                            {/* </Col> */}
+                            </Row>
                             <Button
                                 type="submit"
                                 className="login-btn login-btn-primary mt-4 w-100 responsive-btn"
                                 disabled={loading}
                             >
-                                {loading ? <Spinner animation="border" size="sm" /> : "Register"}
+                                {loading ? <Spinner animation="border" size="sm" /> : "SignUp"}
                             </Button>
                         </Form>
-                        <div className="mt-3 text-center">
+                        {/* <div className="mt-3 text-center">
                             <Link to="/login" className="responsive-text">
                                 Have an account?
                             </Link>
-                        </div>
+                        </div> */}
                     </div>
-                </Col>
-            </div>
-        </Container>
+                {/* </Col> */}
+            {/* </div> */}
+        {/* </Container> */}
+        </>
     );
 };
 

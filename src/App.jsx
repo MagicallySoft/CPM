@@ -1,8 +1,10 @@
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import DashboardLayout from "./components/Nevigation/DashboardLayout"; //
 import Home from "./components/Home";
-import Login from "./components/auth/Login";
-import Register from "./components/auth/Register";
+// import Login from "./components/auth/Login";
+import Signin from "./views/auth/signin/SignIn"
+// import Register from "./components/auth/Register";
+import SignUp from "./views/auth/signup/SignUp.jsx";
 import GenerateCode from "./components/auth/GenerateCode";
 import ClientForm from "./components/customerForm/ClientForm";
 import ClientList from "./components/customer/ClientList";
@@ -23,8 +25,9 @@ function LayoutWrapper() {
   
   return hideLayout ? (
     <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
+      {/* <Route path="/login" element={<Login />} /> */}
+      <Route path="/login" element={<Signin />} />
+      <Route path="/register" element={<SignUp />} />
     </Routes>
   ) : (
     <DashboardLayout>
