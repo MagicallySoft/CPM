@@ -96,7 +96,7 @@ const Home = () => {
               <Card className="dashboard-card">
                 <Card.Body>
                   <Card.Title>Total Partner</Card.Title>
-                  <h3>{userCount}</h3>
+                  <h3>{subadminCount}</h3>
                 </Card.Body>
               </Card>
             </Col>

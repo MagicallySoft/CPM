@@ -171,8 +171,8 @@ import { motion } from "framer-motion";
 const TaskManagement = () => {
     const dispatch = useDispatch();
   const { tasks, loading, error } = useSelector((state) => state.tasks);
-  const { users, loadingUsers } = useSelector((state) => state.user);
-
+  const { employees, loadingUsers } = useSelector((state) => state.user);
+  //  console.log("USER", employees)
   const [showModal, setShowModal] = useState(false);
   const [search, setSearch] = useState("");
   const [filteredUsers, setFilteredUsers] = useState([]);
@@ -189,8 +189,8 @@ const TaskManagement = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    setFilteredUsers(users);
-  }, [users]);
+    setFilteredUsers(employees);
+  }, [employees]);
 
   const handleModalClose = () => {
     setShowModal(false);
@@ -218,7 +218,7 @@ const TaskManagement = () => {
   const handleSearch = (e) => {
     const keyword = e.target.value.toLowerCase();
     setSearch(keyword);
-    setFilteredUsers(users.filter((user) => user.username.toLowerCase().includes(keyword)));
+    setFilteredUsers(employees.filter((user) => user.username.toLowerCase().includes(keyword)));
   };
 
   const getStatusColor = (status) => {

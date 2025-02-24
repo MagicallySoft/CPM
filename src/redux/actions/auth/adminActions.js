@@ -9,7 +9,7 @@ export const fetchUserCounts = () => async (dispatch) => {
     if (!token) throw new Error("Authentication failed! Please log in again.");
 
     const { data } = await axiosInstance.get("/userlist");
-    // console.log(data.data);
+    // console.log("fetchUserCounts--->",data.data.subadmins.length);
     dispatch({
       type: "FETCH_USER_COUNTS_SUCCESS",
       payload: {
@@ -34,7 +34,7 @@ export const fetchUser = () => async (dispatch) => {
     if (!token) throw new Error("Authentication failed! Please log in again.");
 
     const { data } = await axiosInstance.get("/users");
-    // console.log("Action",data.data);
+    // console.log("fetchUser->Action",data.data);
     
     dispatch({
       type: "FETCH_USER_SUCCESS",

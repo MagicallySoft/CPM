@@ -7,7 +7,7 @@ export const fetchUserTasks = () => async (dispatch) => {
     dispatch({ type: "FETCH_USER_TASKS_REQUEST" });
 
     const { data } = await axiosInstance.get("/task/user");
-
+    console.log("Data", data)
     dispatch({ type: "FETCH_USER_TASKS_SUCCESS", payload: data.data });
   } catch (error) {
     dispatch({ type: "FETCH_USER_TASKS_FAIL", payload: error.message });

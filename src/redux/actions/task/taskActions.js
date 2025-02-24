@@ -6,7 +6,7 @@ export const fetchTasks = () => async (dispatch) => {
     dispatch({ type: "FETCH_TASKS_REQUEST" });
 
     const { data } = await axiosInstance.get("/task/admin");
-    console.log("From ACTION" ,data)
+    // console.log("From ACTION" ,data)
     dispatch({ type: "FETCH_TASKS_SUCCESS", payload: data.data });
   } catch (error) {
     dispatch({ type: "FETCH_TASKS_FAIL", payload: error.message });
@@ -19,7 +19,7 @@ export const createTask = (taskData) => async (dispatch) => {
     dispatch({ type: "CREATE_TASK_REQUEST" });
 
     const { data } = await axiosInstance.post("/task", taskData);
-    console.log(data)
+    // console.log(data)
     dispatch({ type: "CREATE_TASK_SUCCESS", payload: data.data });
     toast.success("Task created successfully!");
   } catch (error) {
