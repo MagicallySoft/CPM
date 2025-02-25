@@ -8,7 +8,7 @@ import LoopNavCollapse from './index';
 import NavIcon from '../NavIcon';
 import NavBadge from '../NavBadge';
 
-import { ConfigContext } from '../../../../../contexts/ConfigContext';
+import { ConfigContext } from '../../../../../contexts/ConfigContext.jsx';
 import * as actionType from '../../../../../store/actions';
 
 const NavCollapse = ({ collapse, type }) => {

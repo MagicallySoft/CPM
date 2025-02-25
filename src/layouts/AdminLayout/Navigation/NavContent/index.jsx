@@ -7,6 +7,8 @@ import NavGroup from './NavGroup';
 import NavCard from './NavCard';
 
 const NavContent = ({ navigation }) => {
+  // const { user } = useSelector((state) => state.auth);
+
   const navItems = navigation.map((item) => {
     switch (item.type) {
       case 'group':
@@ -15,7 +17,8 @@ const NavContent = ({ navigation }) => {
         return false;
     }
   });
-
+  // console.log("navItems--->", navItems);
+  
   let mainContent = '';
 
   mainContent = (
@@ -24,7 +27,7 @@ const NavContent = ({ navigation }) => {
         <ListGroup variant="flush" as="ul" bsPrefix=" " className="nav pcoded-inner-navbar" id="nav-ps-next">
           {navItems}
         </ListGroup>
-        <NavCard />
+        {/* <NavCard /> */}
       </PerfectScrollbar>
     </div>
   );

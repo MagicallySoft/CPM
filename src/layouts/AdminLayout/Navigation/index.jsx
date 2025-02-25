@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
+import { useSelector } from 'react-redux';
 
-import { ConfigContext } from '../../../contexts/ConfigContext';
+import { ConfigContext } from '../../../contexts/ConfigContext.jsx';
 import useWindowSize from '../../../hooks/useWindowSize';
 
 import NavLogo from './NavLogo';
@@ -11,6 +12,22 @@ const Navigation = () => {
   const configContext = useContext(ConfigContext);
   const { collapseMenu } = configContext.state;
   const windowSize = useWindowSize();
+
+  const { user } = useSelector((state) => state.auth);
+
+  if (!user) {
+    return null;
+  }
+
+  const filterNavigation = (items) =>
+    items
+      .filter((item) => !item.allowedRoles || item.allowedRoles.includes(user?.role))
+      .map((item) => ({
+        ...item,
+        children: item.children ? filterNavigation(item.children) : undefined
+      }));
+
+  const filteredNavigation = filterNavigation(navigation.items);
 
   let navClass = ['pcoded-navbar'];
 
@@ -27,14 +44,14 @@ const Navigation = () => {
   let navContent = (
     <div className={navBarClass.join(' ')}>
       <NavLogo />
-      <NavContent navigation={navigation.items} />
+      <NavContent navigation={filteredNavigation} />
     </div>
   );
   if (windowSize.width < 992) {
     navContent = (
       <div className="navbar-wrapper">
         <NavLogo />
-        <NavContent navigation={navigation.items} />
+        <NavContent navigation={filteredNavigation} />
       </div>
     );
   }

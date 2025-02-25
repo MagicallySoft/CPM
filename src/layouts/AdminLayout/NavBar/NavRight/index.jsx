@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Card, ListGroup, Dropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import PerfectScrollbar from 'react-perfect-scrollbar';
+import { logoutUser } from "../../../../redux/actions/auth/authActions";
 
 import ChatList from './ChatList';
 
@@ -12,6 +14,8 @@ import avatar4 from '../../../../assets/images/user/avatar-4.jpg';
 
 const NavRight = () => {
   const [listOpen, setListOpen] = useState(false);
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
 
   const notiData = [
     {
@@ -33,6 +37,12 @@ const NavRight = () => {
       activity: 'yesterday'
     }
   ];
+    const handleLogout = () => {
+      dispatch(logoutUser());
+      localStorage.removeItem("userToken");
+      localStorage.removeItem("userData");
+      navigate("/login");
+    };
 
   return (
     <React.Fragment>
@@ -123,9 +133,9 @@ const NavRight = () => {
             <Dropdown.Menu align="end" className="profile-notification">
               <div className="pro-head">
                 <img src={avatar1} className="img-radius" alt="User Profile" />
-                <span>John Doe</span>
-                <Link to="#" className="dud-logout" title="Logout">
-                  <i className="feather icon-log-out" />
+                <span> {user?.name}</span>
+                <Link onClick={handleLogout} className="dud-logout" title="Logout">
+                  <i className="feather icon-log-out" /> 
                 </Link>
               </div>
               <ListGroup as="ul" bsPrefix=" " variant="flush" className="pro-body">

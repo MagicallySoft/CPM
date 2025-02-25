@@ -15,7 +15,9 @@ import { useSelector } from "react-redux";
 
 const PrivateRoute = ({ element, allowedRoles }) => {
   const { user } = useSelector((state) => state.auth);
-  // console.log(user)
+  // console.log("element",element)
+  // console.log("allowedRoles",allowedRoles)
+  // console.log("user",user)
   
   // If user is not logged in, redirect to login page
   if (!user) {
@@ -28,8 +30,10 @@ const PrivateRoute = ({ element, allowedRoles }) => {
   }
 
   // If user role is not in allowedRoles, redirect to home
-  if (!allowedRoles.includes(user.role)) {
-    return <Navigate to="/" replace />;
+  // console.log("---------------->", allowedRoles.includes(user.role));
+  
+  if (!allowedRoles.includes(user?.role)) {
+    return <Navigate to="/login" replace />;
   }
 
   return element;

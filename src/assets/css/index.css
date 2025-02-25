@@ -1773,10 +1773,10 @@ table {
 }
 
 th, td {
-    padding: calc(0.5vw + 5px); 
+    /* padding: calc(0.5vw + 5px);  */
     text-align: left;
-    border: 1px solid #ddd;
-    font-size: calc(0.7vw + 0.6vh) !important; /* Responsive font size */
+    /* border: 1px solid #ddd; */
+    /* font-size: calc(0.7vw + 0.6vh) !important; Responsive font size */
     word-break: break-word; /* Ensure text breaks properly */
 }
 
@@ -1794,14 +1794,14 @@ td {
 @media (max-width: 768px) {
     th, td {
         /* font-size: calc(1vw + 1vh);  */
-        padding: calc(0.6vw + 4px);
+        /* padding: calc(0.6vw + 4px); */
     }
 }
 
 @media (max-width: 480px) {
     th, td {
         /* font-size: calc(1.2vw + 1.2vh); */
-        padding: calc(0.4vw + 3px);
+        /* padding: calc(0.4vw + 3px); */
     }
 }
 
@@ -1862,6 +1862,7 @@ td {
   padding: 0.5rem;
   transition: all 0.2s ease;
   border-radius: 50%;
+  /* padding: 0 !important; */
 }
 
 .action-buttons .btn-icon:hover {

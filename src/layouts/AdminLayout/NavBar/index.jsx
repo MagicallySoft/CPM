@@ -4,8 +4,11 @@ import { Link } from 'react-router-dom';
 import NavLeft from './NavLeft';
 import NavRight from './NavRight';
 
-import { ConfigContext } from '../../../contexts/ConfigContext';
+import { ConfigContext } from '../../../contexts/ConfigContext.jsx';
 import * as actionType from '../../../store/actions';
+
+import { Image} from "react-bootstrap";
+import logoIcon from '../../../assets/image/logo/logo_icon.png'
 
 const NavBar = () => {
   const [moreToggle, setMoreToggle] = useState(false);
@@ -29,7 +32,7 @@ const NavBar = () => {
 
   let moreClass = ['mob-toggler'];
 
-  let collapseClass = ['collapse navbar-collapse'];
+  let collapseClass = ['collapse navbar-collapse bg-body-secondary'];
   if (moreToggle) {
     moreClass = [...moreClass, 'on'];
     collapseClass = [...collapseClass, 'show'];
@@ -42,10 +45,11 @@ const NavBar = () => {
           <span />
         </Link>
         <Link to="#" className="b-brand">
-          <div className="b-bg">
+          {/* <div className="b-bg">
             <i className="feather icon-trending-up" />
-          </div>
-          <span className="b-title">Datta Able</span>
+          </div> */}
+          <Image src={logoIcon} alt="Description" width={40} height={40} />
+          <span className="b-title">CPM Dashbord</span>
         </Link>
         <Link to="#" className={moreClass.join(' ')} onClick={() => setMoreToggle(!moreToggle)}>
           <i className="feather icon-more-vertical" />

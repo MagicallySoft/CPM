@@ -79,7 +79,7 @@ const CustomerDetailModal = ({ show, onHide, customer }) => {
                 <td><strong>Products:</strong></td>
                 <td>
                   {customer.products?.length > 0 ? (
-                    <div className="d-flex justify-content-between" >
+                    <div className="d-flex flex-wrap justify-content-between" >
                       {customer.products.map((product, index) => (
                         // <li key={index}>
                         <Button
@@ -113,7 +113,7 @@ const CustomerDetailModal = ({ show, onHide, customer }) => {
         <Modal.Header closeButton>
           <Modal.Title>Product Details</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body >
           {selectedProduct && (
             <Table bordered>
               <tbody>
@@ -149,16 +149,16 @@ const CustomerDetailModal = ({ show, onHide, customer }) => {
                         {selectedProduct.referenceDetail.referenceId ? (
                           getSubadminDetails(selectedProduct.referenceDetail.referenceId) ? (
                             <>
-                              <p><strong>Subadmin Name:</strong> {getSubadminDetails(selectedProduct.referenceDetail.referenceId).username}</p>
-                              <p><strong>Subadmin Email:</strong> {getSubadminDetails(selectedProduct.referenceDetail.referenceId).email}</p>
+                              <p className="d-flex flex-wrap text-wrap"><strong>Subadmin Name:</strong> {getSubadminDetails(selectedProduct.referenceDetail.referenceId).username}</p>
+                              <p className="d-flex flex-wrap text-wrap"><strong>Subadmin Email:</strong> {getSubadminDetails(selectedProduct.referenceDetail.referenceId).email}</p>
                             </>
                           ) : (
                             "Reference subadmin not found"
                           )
                         ) : (
                           <>
-                            <p><strong>Reference Name:</strong> {selectedProduct.referenceDetail.referenceName}</p>
-                            <p><strong>Reference Contact:</strong> {selectedProduct.referenceDetail.referenceContact}</p>
+                            <p className="d-flex flex-wrap text-wrap"><strong>Reference Name:</strong> {selectedProduct.referenceDetail.referenceName}</p>
+                            <p className="d-flex flex-wrap text-wrap"><strong>Reference Contact:</strong> {selectedProduct.referenceDetail.referenceContact}</p>
                           </>
                         )}
                       </td>

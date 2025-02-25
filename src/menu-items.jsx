@@ -11,58 +11,51 @@ const menuItems = {
             title: 'Dashboard',
             type: 'item',
             icon: 'feather icon-home',
-            url: '/app/dashboard/default'
+            url: '/',
+            allowedRoles: ['admin', 'employee', 'superadmin', 'subadmin'],
           }
         ]
       },
       {
-        id: 'ui-element',
-        title: 'UI ELEMENT',
+        id: 'ui-customer',
+        title: 'CUSTOMER ELEMENT', //UI ELEMENT
         type: 'group',
         icon: 'icon-ui',
         children: [
           {
-            id: 'component',
-            title: 'Component',
+            id: 'customer',
+            title: 'Customer',
             type: 'collapse',
             icon: 'feather icon-box',
             children: [
               {
-                id: 'button',
-                title: 'Button',
+                id: 'customer-list',
+                title: 'Customer List',
                 type: 'item',
-                url: '/basic/button'
+                url: '/customerlist',
+                allowedRoles: ['admin', 'employee', 'superadmin', 'subadmin'],
               },
               {
-                id: 'badges',
-                title: 'Badges',
+                id: 'customer-reminder',
+                title: 'Reminder',
                 type: 'item',
-                url: '/basic/badges'
+                url: '/reminder',
+                allowedRoles: ['admin', 'employee', 'superadmin', 'subadmin'],
               },
               {
-                id: 'breadcrumb',
-                title: 'Breadcrumb & Pagination',
+                id: 'add-customer',
+                title: 'Add Customer',
                 type: 'item',
-                url: '/basic/breadcrumb-paging'
+                url: '/addcustomer',
+                allowedRoles: ['admin', 'superadmin', 'subadmin'],
               },
               {
-                id: 'collapse',
-                title: 'Collapse',
+                id: 'custom-form',
+                title: 'Custom Form',
                 type: 'item',
-                url: '/basic/collapse'
+                url: '/adminform',
+                allowedRoles: ['admin'],
               },
-              {
-                id: 'tabs-pills',
-                title: 'Tabs & Pills',
-                type: 'item',
-                url: '/basic/tabs-pills'
-              },
-              {
-                id: 'typography',
-                title: 'Typography',
-                type: 'item',
-                url: '/basic/typography'
-              }
             ]
           }
         ]
