@@ -2,13 +2,15 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { ListGroup } from 'react-bootstrap';
 import PerfectScrollbar from 'react-perfect-scrollbar';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import NavGroup from './NavGroup';
 import NavCard from './NavCard';
+// import { logoutUser } from "redux/actions/auth/authActions";
 
 const NavContent = ({ navigation }) => {
-  // const { user } = useSelector((state) => state.auth);
 
+  // const { user } = useSelector((state) => state.auth);
   const navItems = navigation.map((item) => {
     switch (item.type) {
       case 'group':
@@ -18,7 +20,7 @@ const NavContent = ({ navigation }) => {
     }
   });
   // console.log("navItems--->", navItems);
-  
+
   let mainContent = '';
 
   mainContent = (

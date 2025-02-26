@@ -7,12 +7,17 @@ export const registerAdmin = (adminData, navigate) => async (dispatch) => {
   try {
     dispatch({ type: "REGISTER_ADMIN_REQUEST" });
     const { data } = await axiosInstance.post("/auth/registeradmin", adminData);
+    console.log("data", data);
+    
     dispatch({ type: "REGISTER_ADMIN_SUCCESS", payload: data });
     toast.success("Admin registration successful!");
     navigate("/login"); // Redirect after registration
   } catch (error) {
     const errorMessage =
       error.response?.data?.message || "Admin registration failed";
+    console.log(error.response);
+    console.log(error.response?.data?.message);
+    
     dispatch({ type: "REGISTER_ADMIN_FAIL", payload: errorMessage });
     toast.error(errorMessage);
   }
@@ -81,25 +86,33 @@ export const loginUser = (credentials, navigate) => async (dispatch) => {
 };
 
 export const logoutUser = () => async (dispatch, navigate) => {
+  const token = localStorage.getItem("userToken");
+
+  // If no token is found, immediately dispatch logout and redirect.
+  if (!token) {
+    dispatch({ type: "LOGOUT" });
+    navigate("/login");
+    return;
+  }
+
   try {
     // const data = await axiosInstance.post("/auth/logout");
-    
+
     // Remove token and user data from local storage
     localStorage.removeItem("userToken");
     localStorage.removeItem("userData");
 
     // Remove default Authorization header from axios
     delete axiosInstance.defaults.headers.common["Authorization"];
-    
-    console.log(data);
 
     dispatch({ type: "LOGOUT" });
     navigate("/login");
   } catch (error) {
-    const errorMessage = error.response?.data?.message || "Failed";
+    const errorMessage = error.response?.data?.message || "Logout failed";
     toast.error(errorMessage);
   }
 };
+
 
 
 export const setUserFromLocalStorage = (userData) => {

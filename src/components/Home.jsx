@@ -3,14 +3,13 @@ import { Container, Row, Col, Card, Spinner, Alert } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { fetchUserCounts } from "../redux/actions/auth/adminActions";
-import { logoutUser, setUserFromLocalStorage } from "../redux/actions/auth/authActions";
+import { setUserFromLocalStorage } from "../redux/actions/auth/authActions";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../assets/css/index.css";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const { user, loading } = useSelector((state) => state.auth);
   const { superadminCount, adminCount, subadminCount, userCount, loadingUsers, error } = useSelector((state) => state.user);
@@ -25,12 +24,7 @@ const Home = () => {
     }
   }, [dispatch, user]);
 
-  const handleLogout = () => {
-    dispatch(logoutUser());
-    localStorage.removeItem("userToken");
-    localStorage.removeItem("userData");
-    navigate("/login");
-  };
+
 
   if (loading || loadingUsers) {
     return (

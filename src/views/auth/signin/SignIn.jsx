@@ -9,7 +9,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 // import AuthLogin from './JWTLogin';
 
-const Signin = () => {
+const SignIn = () => {
   return (
     <React.Fragment>
       <Breadcrumb />
@@ -78,4 +78,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default SignIn;

@@ -4,14 +4,23 @@ import { toast } from "react-toastify";
 import { jwtDecode } from "jwt-decode"; // Import JWT decoder
 
 const axiosInstance = axios.create({
-  // baseURL: "http://localhost:8052/api",
-  baseURL: "https://cpm-seven.vercel.app/api",
+  baseURL: "http://localhost:8052/api",
+  // baseURL: "https://cpm-seven.vercel.app/api",
 });
 
 // Request Interceptor: Check token expiry before sending requests
 axiosInstance.interceptors.request.use(
   async (config) => {
     const token = localStorage.getItem("userToken");
+
+    if (!token && !config.url.includes("/auth/login")) {
+      const reduxStoreModule = await import("../redux/store");
+          const store = reduxStoreModule.default;
+          store.dispatch(logoutUser());
+      // Here you could either use a helper to dispatch logout or simply reject
+      return Promise.reject(new Error("No token found"));
+    }
+
     if (token) {
       try {
         const decoded = jwtDecode(token);
@@ -43,28 +52,7 @@ axiosInstance.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// Response Interceptor: Handle 401 errors (fallback)
-// axiosInstance.interceptors.response.use(
-//   (response) => response,
-//   async (error) => {
-//     if (error.response?.status === 401) {
-//       const reduxStoreModule = await import("../redux/store");
-//       const store = reduxStoreModule.default;
 
-//       if (store?.dispatch) {
-//         store.dispatch(logoutUser());
-//       }
-
-//       localStorage.removeItem("userToken");
-//       localStorage.removeItem("userData");
-//       delete axiosInstance.defaults.headers.common["Authorization"];
-
-//       toast.error("Session expired");
-//       window.location.href = "/login";
-//     }
-//     return Promise.reject(error);
-//   }
-// );
 
 axiosInstance.interceptors.response.use(
   (response) => response,
@@ -79,16 +67,18 @@ axiosInstance.interceptors.response.use(
         const store = reduxStoreModule.default;
 
         if (store?.dispatch) {
+          console.log("store", store);
+          
           store.dispatch(logoutUser());
         }
-
+        console.log("Not store", store);
         localStorage.removeItem("userToken");
         localStorage.removeItem("userData");
         delete axiosInstance.defaults.headers.common["Authorization"];
 
-        toast.error("Session expired. Please log in again.");
+        // toast.error("Session expired. Please log in again.");
         store.dispatch(logoutUser());
-        // window.location.href = "/login";
+        // window.location.href = "/login"; //should not refresh page
 
         // Reject the error after handling it
         return Promise.reject(error);

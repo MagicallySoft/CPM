@@ -78,12 +78,18 @@
 
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import { LogoutProvider } from "./contexts/LogoutContext";
 
 import routes, { renderRoutes } from './routes';
 
 const App = () => {
-  // return <BrowserRouter basename={import.meta.env.VITE_APP_BASE_NAME}>{renderRoutes(routes)}</BrowserRouter>;
-  return <BrowserRouter >{renderRoutes(routes)}</BrowserRouter>;
+  return (
+    <BrowserRouter >
+    <LogoutProvider>
+      {renderRoutes(routes)}
+    </LogoutProvider>
+      </BrowserRouter>
+  );
 };
 
 export default App;

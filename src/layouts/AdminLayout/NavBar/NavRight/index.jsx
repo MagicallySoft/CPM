@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch, } from 'react-redux';
+
 import { Card, ListGroup, Dropdown } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import PerfectScrollbar from 'react-perfect-scrollbar';
+import { useLogout } from "../../../../contexts/LogoutContext";
 import { logoutUser } from "../../../../redux/actions/auth/authActions";
 
 import ChatList from './ChatList';
@@ -13,8 +15,8 @@ import avatar3 from '../../../../assets/images/user/avatar-3.jpg';
 import avatar4 from '../../../../assets/images/user/avatar-4.jpg';
 
 const NavRight = () => {
+  const logout = useLogout();
   const [listOpen, setListOpen] = useState(false);
-  const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
 
   const notiData = [
@@ -37,12 +39,7 @@ const NavRight = () => {
       activity: 'yesterday'
     }
   ];
-    const handleLogout = () => {
-      dispatch(logoutUser());
-      localStorage.removeItem("userToken");
-      localStorage.removeItem("userData");
-      navigate("/login");
-    };
+
 
   return (
     <React.Fragment>
@@ -134,7 +131,7 @@ const NavRight = () => {
               <div className="pro-head">
                 <img src={avatar1} className="img-radius" alt="User Profile" />
                 <span> {user?.name}</span>
-                <Link onClick={handleLogout} className="dud-logout" title="Logout">
+                <Link onClick={logout} className="dud-logout" title="Logout">
                   <i className="feather icon-log-out" /> 
                 </Link>
               </div>

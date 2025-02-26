@@ -152,7 +152,7 @@ const menuItems = {
             type: 'item',
             icon: 'feather icon-book',
             classes: 'nav-item',
-            url: 'https://codedthemes.gitbook.io/datta/',
+            // url: 'https://codedthemes.gitbook.io/datta/',
             target: true,
             external: true
           },
@@ -202,14 +202,14 @@ const menuItems = {
               }
             ]
           },
-          {
-            id: 'disabled-menu',
-            title: 'Disabled Menu',
-            type: 'item',
-            url: '#',
-            classes: 'nav-item disabled',
-            icon: 'feather icon-power'
-          }
+          // {
+          //   id: 'logout',
+          //   title: 'Logout',
+          //   type: 'item',
+          //   url: '#',
+          //   classes: 'nav-item dud-logout',
+          //   icon: 'feather icon-log-out',
+          // }
         ]
       }
     ]

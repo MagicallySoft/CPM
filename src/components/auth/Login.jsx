@@ -38,7 +38,7 @@ const Login = () => {
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     if (searchParams.get("sessionExpired") === "true") {
-      toast.error("Session expired. Please log in again.");
+      // toast.error("Session expired. Please log in again.");
     }
   }, [location.search]);
 
