@@ -11,7 +11,7 @@
 // import "../../assets/css/index.css";
 
 // const ClientList = () => {
-//     const [searchQuery, setSearchQuery] = useState({
+//     const [searchTerm, setSearchTerm] = useState({
 //         companyName: "",
 //         mobileNumber: "",
 //         contactPerson: "",
@@ -49,20 +49,20 @@
 //     const handlePageChange = (newPage) => {
 //         if (newPage >= 1 && newPage <= pagination.totalPages) {
 //             setCurrentPage(newPage);
-//             dispatch(searchCustomer(searchQuery, newPage, limit));
+//             dispatch(searchCustomer(searchTerm, newPage, limit));
 //         }
 //     };
 
 //     const handleChange = (e) => {
 //         const { name, value } = e.target;
-//         setSearchQuery(prev => ({ ...prev, [name]: value }));
-//         dispatch(searchCustomer({ ...searchQuery, [name]: value }));
+//         setSearchTerm(prev => ({ ...prev, [name]: value }));
+//         dispatch(searchCustomer({ ...searchTerm, [name]: value }));
 //     };
 
 //     const handleSearch = (e) => {
 //         e.preventDefault();
 //         setCurrentPage(1);
-//         dispatch(searchCustomer(searchQuery, 1, limit));
+//         dispatch(searchCustomer(searchTerm, 1, limit));
 //     };
 
 //     const handleViewDetails = (customer) => {
@@ -151,7 +151,7 @@
 //                                         <Form.Control
 //                                             type="text"
 //                                             name={field}
-//                                             value={searchQuery[field]}
+//                                             value={searchTerm[field]}
 //                                             onChange={handleChange}
 //                                             placeholder={`Search ${field.replace(/([A-Z])/g, ' $1').toLowerCase()}...`}
 //                                             className="bdr"
@@ -179,7 +179,7 @@
 //                     loading={loading}
 //                     handleSearch={handleSearch}
 //                     handleChange={handleChange}
-//                     searchQuery={searchQuery}
+//                     searchTerm={searchTerm}
 //                 />
 //                 <Card.Body>
 
@@ -425,12 +425,13 @@ import {
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 
 const ClientList = () => {
-    const [searchQuery, setSearchQuery] = useState({
-        companyName: "",
-        mobileNumber: "",
-        contactPerson: "",
-        tallySerialNo: ""
-    });
+    // const [search, setSearchTerm] = useState({
+    //     companyName: "",
+    //     mobileNumber: "",
+    //     contactPerson: "",
+    //     tallySerialNo: ""
+    // });
+    const [searchTerm, setSearchTerm] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedCustomer, setSelectedCustomer] = useState(null);
     const [showModal, setShowModal] = useState(false);
@@ -453,8 +454,8 @@ const ClientList = () => {
     const isAdmin = user?.role === "admin";
 
     useEffect(() => {
-        dispatch(searchCustomer({}, currentPage, limit));
-    }, [dispatch, currentPage]);
+        dispatch(searchCustomer(searchTerm, currentPage, limit));
+    }, [dispatch, currentPage, limit, searchTerm]);
 
     useEffect(() => {
         if (error) toast.error(error);
@@ -463,21 +464,21 @@ const ClientList = () => {
     const handlePageChange = (newPage) => {
         if (newPage >= 1 && newPage <= pagination.totalPages) {
             setCurrentPage(newPage);
-            dispatch(searchCustomer(searchQuery, newPage, limit));
+            dispatch(searchCustomer({ search: searchTerm }, currentPage, limit));
         }
     };
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setSearchQuery(prev => ({ ...prev, [name]: value }));
-        dispatch(searchCustomer({ ...searchQuery, [name]: value }));
+        setSearchTerm(e.target.value);
+        dispatch(searchCustomer({ search: searchTerm }, currentPage, limit));
+        setCurrentPage(1);
     };
 
     const handleSearch = (e) => {
         e.preventDefault();
         setCurrentPage(1);
-        dispatch(searchCustomer(searchQuery, 1, limit));
-    };
+        dispatch(searchCustomer({ search: searchTerm }, 1, limit));
+      };
 
     const handleViewDetails = (customer) => {
         setSelectedCustomer(customer);
@@ -485,6 +486,8 @@ const ClientList = () => {
     };
 
     const handleDeleteCustomer = (customerId) => {
+        // console.log(customerId);
+        
         if (window.confirm("Are you sure you want to delete this customer?")) {
             dispatch(deleteCustomer(customerId))
                 .then(() => dispatch(searchCustomer({})))
@@ -501,52 +504,82 @@ const ClientList = () => {
 
 
     // Helper function to generate pagination items with ellipsis
+    // const getPaginationItems = () => {
+    //     const total = pagination.totalPages;
+    //     const current = currentPage;
+    //     const delta = 2; // Number of pages to show on each side of the current page
+
+    //     // If total pages are small, show all
+    //     if (total <= 7) {
+    //         return Array.from({ length: total }, (_, i) => i + 1);
+    //     }
+
+    //     const pages = [];
+    //     // Always show the first page
+    //     pages.push(1);
+
+    //     // Add left ellipsis if needed
+    //     if (current - delta > 2) {
+    //         pages.push('ellipsis');
+    //     } else {
+    //         // Add the pages between 2 and the start of the range if no ellipsis is needed
+    //         for (let i = 2; i < Math.max(2, current - delta); i++) {
+    //             pages.push(i);
+    //         }
+    //     }
+
+    //     // Determine the range of pages around the current page
+    //     const start = Math.max(2, current - delta);
+    //     const end = Math.min(total - 1, current + delta);
+    //     for (let i = start; i <= end; i++) {
+    //         pages.push(i);
+    //     }
+
+    //     // Add right ellipsis if needed
+    //     if (current + delta < total - 1) {
+    //         pages.push('ellipsis');
+    //     } else {
+    //         // Add the pages between the end of the range and the last page if no ellipsis is needed
+    //         for (let i = current + delta + 1; i < total; i++) {
+    //             pages.push(i);
+    //         }
+    //     }
+
+    //     // Always show the last page
+    //     pages.push(total);
+    //     return pages;
+    // };
     const getPaginationItems = () => {
         const total = pagination.totalPages;
         const current = currentPage;
-        const delta = 2; // Number of pages to show on each side of the current page
-
-        // If total pages are small, show all
+        const delta = 2;
         if (total <= 7) {
             return Array.from({ length: total }, (_, i) => i + 1);
         }
-
         const pages = [];
-        // Always show the first page
         pages.push(1);
-
-        // Add left ellipsis if needed
         if (current - delta > 2) {
-            pages.push('ellipsis');
+            pages.push("ellipsis");
         } else {
-            // Add the pages between 2 and the start of the range if no ellipsis is needed
             for (let i = 2; i < Math.max(2, current - delta); i++) {
                 pages.push(i);
             }
         }
-
-        // Determine the range of pages around the current page
         const start = Math.max(2, current - delta);
         const end = Math.min(total - 1, current + delta);
         for (let i = start; i <= end; i++) {
             pages.push(i);
         }
-
-        // Add right ellipsis if needed
         if (current + delta < total - 1) {
-            pages.push('ellipsis');
+            pages.push("ellipsis");
         } else {
-            // Add the pages between the end of the range and the last page if no ellipsis is needed
             for (let i = current + delta + 1; i < total; i++) {
                 pages.push(i);
             }
         }
-
-        // Always show the last page
         pages.push(total);
         return pages;
     };
-
 
     return (
         <>
@@ -565,7 +598,7 @@ const ClientList = () => {
                                         <Form.Control
                                             type="text"
                                             name={field}
-                                            value={searchQuery[field]}
+                                            value={searchTerm[field]}
                                             onChange={handleChange}
                                             placeholder={`Search ${field.replace(/([A-Z])/g, ' $1').toLowerCase()}...`}
                                             className="bdr"
@@ -593,7 +626,7 @@ const ClientList = () => {
                     loading={loading}
                     handleSearch={handleSearch}
                     handleChange={handleChange}
-                    searchQuery={searchQuery}
+                    searchTerm={searchTerm}
                 />
                 <Card.Body>
 
@@ -677,40 +710,40 @@ const ClientList = () => {
                                                 style={{ backgroundColor: rowBg }}
                                             >
                                                 {/* <ButtonGroup className="action-buttons"> */}
-                                                    <Button
-                                                        variant="link"
-                                                        className="btn-icon"
-                                                        onClick={(e) => {
-                                                            e.stopPropagation();
-                                                            handleViewDetails(customer);
-                                                        }}
-                                                    >
-                                                        <FaEye className="text-primary" />
-                                                    </Button>
-                                                    {isAdmin && (
-                                                        <>
-                                                            <Button
-                                                                variant="link"
-                                                                className="btn-icon"
-                                                                onClick={(e) => {
-                                                                    e.stopPropagation();
-                                                                    handleUpdateCustomer(customer);
-                                                                }}
-                                                            >
-                                                                <FaEdit className="text-warning" />
-                                                            </Button>
-                                                            <Button
-                                                                variant="link"
-                                                                className="btn-icon"
-                                                                onClick={(e) => {
-                                                                    e.stopPropagation();
-                                                                    handleDeleteCustomer(customer._id);
-                                                                }}
-                                                            >
-                                                                <FaTrash className="text-danger" />
-                                                            </Button>
-                                                        </>
-                                                    )}
+                                                <Button
+                                                    variant="link"
+                                                    className="btn-icon"
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        handleViewDetails(customer);
+                                                    }}
+                                                >
+                                                    <FaEye className="text-primary" />
+                                                </Button>
+                                                {isAdmin && (
+                                                    <>
+                                                        <Button
+                                                            variant="link"
+                                                            className="btn-icon"
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                handleUpdateCustomer(customer);
+                                                            }}
+                                                        >
+                                                            <FaEdit className="text-warning" />
+                                                        </Button>
+                                                        <Button
+                                                            variant="link"
+                                                            className="btn-icon"
+                                                            onClick={(e) => {
+                                                                e.stopPropagation();
+                                                                handleDeleteCustomer(customer._id);
+                                                            }}
+                                                        >
+                                                            <FaTrash className="text-danger" />
+                                                        </Button>
+                                                    </>
+                                                )}
                                                 {/* </ButtonGroup> */}
                                             </Td>
                                         </Tr>
@@ -770,35 +803,33 @@ const ClientList = () => {
                     </div>
 
                     {/* Pagination */}
-                    {pagination?.totalPages > 1 && (
+                    {pagination.totalPages > 1 && (
                         <div className="d-flex flex-column flex-md-row justify-content-between align-items-center">
-                            <div className="mb-3 mb-md-0 text-muted responsive-text">
+                            <div className="mb-3 mb-md-0 text-muted">
                                 Showing {((currentPage - 1) * limit) + 1} - {Math.min(currentPage * limit, pagination.totalItems)} of {pagination.totalItems}
                             </div>
-                            <Pagination className="mb-0">
+                            <Pagination>
                                 <Pagination.Prev
                                     disabled={currentPage === 1}
                                     onClick={() => handlePageChange(currentPage - 1)}
-                                    className="page-link-hover responsive-text"
                                 />
-                                {getPaginationItems()?.map((item, index) =>
-                                    item === 'ellipsis' ? (
+                                {getPaginationItems().map((item, index) =>
+                                    item === "ellipsis" ? (
                                         <Pagination.Ellipsis key={`ellipsis-${index}`} disabled className="mx-1" />
                                     ) : (
                                         <Pagination.Item
                                             key={item}
                                             active={item === currentPage}
                                             onClick={() => handlePageChange(item)}
-                                            className="mx-1 page-link-hover responsive-text"
+                                            className="mx-1"
                                         >
-                                            <span className="responsive-text">{item}</span>
+                                            {item}
                                         </Pagination.Item>
                                     )
                                 )}
                                 <Pagination.Next
                                     disabled={currentPage === pagination.totalPages}
                                     onClick={() => handlePageChange(currentPage + 1)}
-                                    className="page-link-hover responsive-text"
                                 />
                             </Pagination>
                         </div>

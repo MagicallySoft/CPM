@@ -5,6 +5,7 @@ import axiosInstance from "../../../utils/axiosInstance";
 // Admin Registration Action
 export const registerAdmin = (adminData, navigate) => async (dispatch) => {
   try {
+    console.log(adminData)
     dispatch({ type: "REGISTER_ADMIN_REQUEST" });
     const { data } = await axiosInstance.post("/auth/registeradmin", adminData);
     console.log("data", data);

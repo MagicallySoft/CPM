@@ -7,7 +7,7 @@ export const addCustomer = (customerData) => async (dispatch) => {
     dispatch({ type: "ADD_CUSTOMER_REQUEST" });
 
     const { data } = await axiosInstance.post("/customer/customer", customerData);
-    // console.log("Responce", data)
+    console.log("Responce", data)
     dispatch({ type: "ADD_CUSTOMER_SUCCESS", payload: data.data });
 
     toast.success(data.message || "Customer added successfully!");
@@ -29,19 +29,27 @@ export const searchCustomer = (searchQuery, page = 1, limit = 10) => async (disp
     const { data } = await axiosInstance.get("/customer/customer", {
       params: { ...searchQuery, page, limit },
     });
-    // console.log("searchCustomer------>\n",data);
+    
+    // Assuming response structure: data.data = { customers, total, page, limit }
+    const totalItems = data.data.total;
+    const totalPages = Math.ceil(totalItems / limit);
+    
+    const pagination = {
+      totalItems,
+      totalPages,
+      page: data.data.page,
+      limit: data.data.limit,
+    };
     
     dispatch({
       type: "FETCH_CUSTOMERS_SUCCESS",
       payload: {
-        customers: data.data.customers, // Extract customer array correctly
-        pagination: data.data.pagination, // Ensure pagination data is stored
+        customers: data.data.customers,
+        pagination,
       },
     });
   } catch (error) {
     const errorMessage = error.response?.data?.message || "Something went wrong";
-    // console.log("API\n",errorMessage)
-    // console.log("ERROR\n",error)
     dispatch({ type: "FETCH_CUSTOMERS_FAIL", payload: errorMessage });
   }
 };

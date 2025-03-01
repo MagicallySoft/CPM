@@ -40,7 +40,8 @@ const CustomerDetailModal = ({ show, onHide, customer }) => {
         </Modal.Header>
         <Modal.Body>
           {/* <Table striped bordered hover className="customer-detail-table align-middle mb-0"> */}
-          <Table className="align-middle mb-0">
+          <Table className="align-middle mb-0" responsive>
+
             <tbody>
               <tr>
                 <td><strong>Company Name:</strong></td>
@@ -74,6 +75,17 @@ const CustomerDetailModal = ({ show, onHide, customer }) => {
                 <td><strong>Remark:</strong></td>
                 <td>{customer.remark || "N/A"}</td>
               </tr>
+              <tr>
+                <td><strong>Reference:</strong></td>
+                <td>
+                  <p className="d-flex flex-wrap text-wrap">
+                    <strong>Reference Name:&nbsp; &nbsp;</strong> {customer.referenceDetail?.referenceName || "N/A"}
+                  </p>
+                  <p className="d-flex flex-wrap text-wrap">
+                    <strong>Subadmin Contact:&nbsp;&nbsp;</strong> {customer.referenceDetail?.referenceContact || "N/A"}
+                  </p>
+                </td>
+              </tr>
               {/* Products Section */}
               <tr>
                 <td><strong>Products:</strong></td>
@@ -88,7 +100,7 @@ const CustomerDetailModal = ({ show, onHide, customer }) => {
                           className="bg-btn"
                           onClick={() => handleProductClick(product)}
                         >
-                          {product.productName}
+                          {product.productDetailId?.name}
                         </Button>
                         // </li>
                       ))}
@@ -119,7 +131,7 @@ const CustomerDetailModal = ({ show, onHide, customer }) => {
               <tbody>
                 <tr>
                   <td><strong>Product Name:</strong></td>
-                  <td>{selectedProduct.productName}</td>
+                  <td>{selectedProduct.productDetailId?.name}</td>
                 </tr>
                 <tr>
                   <td><strong>Purchase Date:</strong></td>
@@ -141,30 +153,33 @@ const CustomerDetailModal = ({ show, onHide, customer }) => {
                   <td>{selectedProduct.details}</td>
                 </tr>
                 {/* Reference Details */}
-                {selectedProduct.reference && (
-                  <>
-                    <tr>
-                      <td><strong>Reference:</strong></td>
-                      <td>
-                        {selectedProduct.referenceDetail.referenceId ? (
-                          getSubadminDetails(selectedProduct.referenceDetail.referenceId) ? (
+                {/* {selectedProduct.referenceDetail && ( */}
+                <>
+                  <tr>
+                    <td><strong>Reference:</strong></td>
+                    <td>
+                      {selectedProduct && selectedProduct.referenceDetail && selectedProduct.referenceDetail.referenceId ? (
+                        <>
+                          {getSubadminDetails(selectedProduct.referenceDetail.referenceId) ? (
                             <>
-                              <p className="d-flex flex-wrap text-wrap"><strong>Subadmin Name:</strong> {getSubadminDetails(selectedProduct.referenceDetail.referenceId).username}</p>
+                              <p className="d-flex flex-wrap text-wrap"><strong>Subadmin Name:</strong> {getSubadminDetails(selectedProduct.referenceDetail.referenceId).referenceName}</p>
                               <p className="d-flex flex-wrap text-wrap"><strong>Subadmin Email:</strong> {getSubadminDetails(selectedProduct.referenceDetail.referenceId).email}</p>
                             </>
                           ) : (
-                            "Reference subadmin not found"
-                          )
-                        ) : (
-                          <>
-                            <p className="d-flex flex-wrap text-wrap"><strong>Reference Name:</strong> {selectedProduct.referenceDetail.referenceName}</p>
-                            <p className="d-flex flex-wrap text-wrap"><strong>Reference Contact:</strong> {selectedProduct.referenceDetail.referenceContact}</p>
-                          </>
-                        )}
-                      </td>
-                    </tr>
-                  </>
-                )}
+                            <p>Reference subadmin not found</p>
+                          )}
+                        </>
+                      ) : (
+                        <>
+                          <p className="d-flex flex-wrap text-wrap"><strong>Reference Name:</strong> {selectedProduct?.referenceDetail?.referenceName || 'N/A'}</p>
+                          <p className="d-flex flex-wrap text-wrap"><strong>Reference Contact:</strong> {selectedProduct?.referenceDetail?.referenceContact || 'N/A'}</p>
+                        </>
+                      )}
+                    </td>
+                  </tr>
+                </>
+
+                {/*  )} */}
               </tbody>
             </Table>
           )}

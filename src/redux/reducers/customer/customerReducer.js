@@ -2,7 +2,7 @@
 const customerInitialState = {
   loading: false,
   customers: [],
-  pagination: { page: 1, totalPages: 1 }, // Ensure pagination is always an object
+  pagination: { page: 1, totalPages: 1, totalItems: 0, limit: 10 },
   error: null,
 };
 
@@ -15,10 +15,10 @@ export const customerReducer = (state = customerInitialState, action) => {
       return { ...state, loading: true };
     case "FETCH_CUSTOMERS_SUCCESS":
       return {
-        // ...state,
+        ...state,
         loading: false,
         customers: action.payload.customers,
-        pagination: action.payload.pagination || { page: 1, totalPages: 1 }, // Default fallback
+        pagination: action.payload.pagination || { page: 1, totalPages: 1, totalItems: 0, limit: 10 },
       };
     case "FETCH_CUSTOMERS_FAIL":
       return { ...state, loading: false, error: action.payload };
