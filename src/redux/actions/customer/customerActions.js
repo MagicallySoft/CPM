@@ -166,7 +166,7 @@ export const deleteField = (fieldId) => async (dispatch) => {
   }
 };
 
-// ✅ Search Customers with Pagination
+// ✅ 
 export const fetchReminders = (searchQuery) => async (dispatch) => {
   try {
     dispatch({ type: "FETCH_CUSTOMERS_REMINDER_REQUEST" });
@@ -175,8 +175,11 @@ export const fetchReminders = (searchQuery) => async (dispatch) => {
       params: { ...searchQuery },
     });
     // console.log(data);
-    const transformedReminders = data.data.customers;
-
+    
+    // Update: API response returns data.data.products, not customers.
+    const transformedReminders = data.data.products;
+    // console.log(transformedReminders);
+    
     dispatch({
       type: "FETCH_CUSTOMERS_REMINDER_SUCCESS",
       payload: transformedReminders,
@@ -186,6 +189,7 @@ export const fetchReminders = (searchQuery) => async (dispatch) => {
     dispatch({ type: "FETCH_CUSTOMERS_REMINDER_FAIL", payload: errorMessage });
   }
 };
+
 
 export const deleteReminder = (fieldId) => async (dispatch) => {
   try {

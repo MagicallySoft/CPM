@@ -7,6 +7,7 @@ import { customFieldReducer } from "./customer/customFieldReducer";
 import { customerReminderReducer } from "./customer/customerReminder";
 import { taskReducer } from "./task/taskReducer";
 import { taskUserReducer } from "./task/taskUserReducer";
+import { productDetailsReducer } from "./product/productReducer";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
   user: usersReducer,
   tasks: taskReducer,
   userTasks: taskUserReducer,
-  customerReminder: customerReminderReducer
+  customerReminder: customerReminderReducer,
+  product: productDetailsReducer
 });
 
 
