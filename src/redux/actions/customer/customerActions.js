@@ -192,12 +192,12 @@ export const deleteField = (fieldId) => async (dispatch) => {
 export const fetchReminders = (searchQuery) => async (dispatch) => {
   try {
     dispatch({ type: "FETCH_CUSTOMERS_REMINDER_REQUEST" });
-    console.log("-------------------------------->\n",searchQuery);
+    // console.log("-------------------------------->\n",searchQuery);
     
-    const { data } = await axiosInstance.get("/customer/customer/product", {
+    const { data } = await axiosInstance.get("/customer/customer/remindproduct", {
       params: { ...searchQuery },
     });
-    console.log(data);
+    // console.log(data);
     
     // Update: API response returns data.data.products, not customers.
     const transformedReminders = data.data;
