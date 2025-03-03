@@ -7,9 +7,8 @@ const customerInitialState = {
 };
 
 export const customerReducer = (state = customerInitialState, action) => {
-  // console.log("Reducer Action:", action.type, action.payload);
-  // console.log("action.payload._id--->", action.payload?._id );
-
+  
+  
   switch (action.type) {
     case "FETCH_CUSTOMERS_REQUEST":
       return { ...state, loading: true };
@@ -60,4 +59,5 @@ export const customerReducer = (state = customerInitialState, action) => {
     default:
       return state;
   }
+
 };

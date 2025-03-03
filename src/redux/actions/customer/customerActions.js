@@ -1,6 +1,11 @@
 import axiosInstance from "../../../utils/axiosInstance";
 import { toast } from "react-toastify";
 
+
+//------------------------//
+//-------Customer---------//
+//------------------------//
+
 // ✅ Add Customer
 export const addCustomer = (customerData) => async (dispatch) => {
   try {
@@ -96,6 +101,14 @@ export const updateCustomer = (customerId, customerData) => async (dispatch) => 
   }
 };
 
+
+
+
+
+//----------------------------//
+//-------CustomField---------//
+//---------------------------//
+
 // ✅ Add Custom Field
 export const addCustomField = (fieldData) => async (dispatch) => {
   try {
@@ -166,18 +179,28 @@ export const deleteField = (fieldId) => async (dispatch) => {
   }
 };
 
+
+
+
+
+
+//------------------------//
+//-------Reminders--------//
+//------------------------//
+
 // ✅ 
 export const fetchReminders = (searchQuery) => async (dispatch) => {
   try {
     dispatch({ type: "FETCH_CUSTOMERS_REMINDER_REQUEST" });
-
+    console.log("-------------------------------->\n",searchQuery);
+    
     const { data } = await axiosInstance.get("/customer/customer/product", {
       params: { ...searchQuery },
     });
-    // console.log(data);
+    console.log(data);
     
     // Update: API response returns data.data.products, not customers.
-    const transformedReminders = data.data.products;
+    const transformedReminders = data.data;
     // console.log(transformedReminders);
     
     dispatch({
@@ -206,6 +229,13 @@ export const deleteReminder = (fieldId) => async (dispatch) => {
     throw error;
   }
 };
+
+
+
+
+//------------------------//
+//-----importCustomers----//
+//------------------------//
 
 // ✅ import Customer Data
 export const importCustomersAction = (customerData) => async (dispatch) => {

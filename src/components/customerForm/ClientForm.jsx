@@ -465,7 +465,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addCustomer, getCustomFields } from "../../redux/actions/customer/customerActions";
 import { fetchUser } from "../../redux/actions/auth/adminActions";
-import { listProductDetails } from "../../redux/actions/product/productActions.js"; // New action to fetch product details
+import { listProductDetails } from "../../redux/actions/product/productActions.js"; 
 import { Form, Button, Container, Row, Col, Spinner, Card } from "react-bootstrap";
 import { toast } from "react-toastify";
 import { ToastContainer } from "react-toastify";
@@ -480,10 +480,8 @@ const ClientForm = () => {
   const { loading } = useSelector((state) => state.customer || {});
   const { customFields } = useSelector((state) => state.customField) || { customFields: [] };
   const { subadmins } = useSelector((state) => state.user) || { subadmins: [] };
-  // Get product details from Redux store (fetched from the backend)
   const { productDetails } = useSelector((state) => state.product) || { productDetails: [] };
 
-  // Local state to manage search term for products
   const [productSearch, setProductSearch] = useState("");
 
   // Initial form state, including a new "hasReference" field to toggle reference details.

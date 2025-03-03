@@ -383,7 +383,7 @@ const ReminderList = () => {
     // Also get product details from store for filtering
     const { productDetails } = useSelector((state) => state.product) || { productDetails: [] };
     const { reminders, loading, error } = useSelector((state) => state.customerReminder) || { reminders: [] };
-    // console.log(reminders);
+    console.log("Component",reminders);
 
     // Build options for product filter dropdown
     const productOptions = productDetails.map((prod) => ({

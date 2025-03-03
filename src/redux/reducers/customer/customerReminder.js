@@ -5,6 +5,8 @@ const customerReminderInitialState = {
 };
 
 export const customerReminderReducer = (state = customerReminderInitialState, action) => {
+  // console.log(reminders);
+  console.log(action.payload);
   switch ("Reducer",action.type) {
     case "FETCH_CUSTOMERS_REMINDER_REQUEST":
       return { ...state, loading: true };
@@ -24,4 +26,6 @@ export const customerReminderReducer = (state = customerReminderInitialState, ac
     default:
       return state;
   }
+ 
+  
 };
