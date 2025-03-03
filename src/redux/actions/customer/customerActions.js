@@ -200,7 +200,7 @@ export const fetchReminders = (searchQuery) => async (dispatch) => {
     // console.log(data);
     
     // Update: API response returns data.data.products, not customers.
-    const transformedReminders = data.data;
+    const transformedReminders = data.data.products;
     // console.log(transformedReminders);
     
     dispatch({
