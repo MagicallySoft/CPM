@@ -423,6 +423,7 @@ import {
     Td
 } from "react-super-responsive-table";
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
+import { getProducts } from "../../redux/actions/product/productActions";
 
 const ClientList = () => {
     // const [search, setSearchTerm] = useState({
@@ -451,11 +452,14 @@ const ClientList = () => {
     const dispatch = useDispatch();
     const { customers, loading, error, pagination } = useSelector(state => state.customer);
     const { user } = useSelector(state => state.auth);
+    const { productDetails, products } = useSelector((state) => state.product) || { productDetails: [] };
     const isAdmin = user?.role === "admin";
+
 
     useEffect(() => {
         dispatch(searchCustomer(searchTerm, currentPage, limit));
-    }, [dispatch, currentPage, limit, searchTerm]);
+        dispatch(getProducts())
+    }, [dispatch, currentPage, limit, searchTerm, showUpdateModal]);
 
     useEffect(() => {
         if (error) toast.error(error);
