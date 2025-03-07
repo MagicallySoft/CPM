@@ -431,7 +431,12 @@ const ReminderList = () => {
         const formattedDate = new Date(renewalDate).toLocaleDateString("en-GB");
         
         let shareText = `*Subject: Renewal Reminder - ${product.name}*\n\n` +
-                        `Dear ${customer.contactPerson || customer.companyName},\n\n` +
+                        
+                        `*Company Name:*  ${customer.companyName}\n`+
+                        `*Contact Person:*  ${customer.contactPerson}\n`+
+                        `*Contact Number:*  ${customer.mobileNumber}\n\n`+
+
+                        `Dear ${customer.contactPerson || customer.companyName},\n` +
                         `Your *${product.name}* subscription with *Shivansh Infosys* is due for renewal on *${formattedDate}*.\n\n` +
                         `To continue uninterrupted access to real-time business insights, reports, and automation features, kindly renew before the due date.\n\n` +
                         `For renewal assistance, contact us at 📞 *8141703007* or ✉ *shivanshinfosys@gmail.com*\n`;
