@@ -34,7 +34,6 @@ const FileUploadButton = () => {
   };
 
   const handleClick = () => {
-    // Trigger the hidden file input when the button is clicked
     fileInputRef.current.click();
   };
 

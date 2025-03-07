@@ -325,6 +325,8 @@ import { utils as xlsxUtils, writeFile as writeExcelFile } from "xlsx";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import Select from "react-select";
+import { FaWhatsapp } from "react-icons/fa";
+import { CiShare1 } from "react-icons/ci";
 
 // Utility functions for export
 const formatFileName = (baseName) => {
@@ -423,6 +425,43 @@ const ReminderList = () => {
         }
         dispatch(fetchReminders(searchQuery));
     };
+
+    const getShareText = (renewal) => {
+        const { customerId: customer, productDetailId: product, renewalDate } = renewal;
+        const formattedDate = new Date(renewalDate).toLocaleDateString("en-GB");
+        
+        let shareText = `*Subject: Renewal Reminder - ${product.name}*\n\n` +
+                        `Dear ${customer.contactPerson || customer.companyName},\n\n` +
+                        `Your *${product.name}* subscription with *Shivansh Infosys* is due for renewal on *${formattedDate}*.\n\n` +
+                        `To continue uninterrupted access to real-time business insights, reports, and automation features, kindly renew before the due date.\n\n` +
+                        `For renewal assistance, contact us at 📞 *8141703007* or ✉ *shivanshinfosys@gmail.com*\n`;
+        
+        // Append reference details if available
+        if (customer.referenceDetail) {
+          const refName = customer.referenceDetail.referenceName || "";
+          const refContact = customer.referenceDetail.referenceContact || customer.referenceDetail.email || "";
+          shareText += `or\n${refName ? refName + ": " : ""}${refContact}\n\n`;
+        } else {
+          shareText += `\n`;
+        }
+        
+        shareText += `Renew today and stay ahead in business! 🚀\n\n` +
+                     `Best Regards,\nShivansh Infosys`;
+        
+        return shareText;
+      };
+      
+
+    // Helper function to format phone numbers
+    const getFormattedPhone = (phone) => {
+        let formattedPhone = phone.replace(/\D/g, ""); // Strip non-numeric characters
+        // If the phone number does not start with '91', prepend it
+        if (!formattedPhone.startsWith("91")) {
+            formattedPhone = "91" + formattedPhone;
+        }
+        return formattedPhone;
+    };
+
 
     // Local state for modal (selected renewal record)
     const [selectedRenewal, setSelectedRenewal] = useState(null);
@@ -573,10 +612,24 @@ const ReminderList = () => {
                 </div>
             ) : reminders?.length > 0 ? (
                 <Row className="g-4">
+
                     {reminders.map((renewal) => {
-                        const customer = renewal.customerId;
-                        const product = renewal.productDetailId;
-                        const priority = calculatePriority(renewal.renewalDate);
+                          const customer = renewal.customerId;
+                          const product = renewal.productDetailId;
+                          const priority = calculatePriority(renewal.renewalDate);
+                        
+                          // Build share text (using your updated getShareText function)
+                          const shareMessage = getShareText(renewal);
+                        
+                          // Format phone numbers for customer and reference
+                          const customerPhone = getFormattedPhone(customer.mobileNumber);
+                          const customerShareUrl = `https://wa.me/${customerPhone}?text=${encodeURIComponent(shareMessage)}`;
+                        
+                          const referenceShareUrl =
+                            customer.referenceDetail && customer.referenceDetail.referenceContact
+                              ? `https://wa.me/${getFormattedPhone(customer.referenceDetail.referenceContact)}?text=${encodeURIComponent(shareMessage)}`
+                              : null;
+
                         return (
                             <Col key={renewal._id} xs={12} lg={6} xl={4}>
                                 <Card className="h-100 shadow-sm">
@@ -601,34 +654,43 @@ const ReminderList = () => {
                                                     >
                                                         {customer.email}
                                                     </a>
-
                                                 </div>
-
-
                                             </div>
-
                                         </Stack>
+
                                         {customer.referenceDetail && (
-
-
-                                            customer.referenceDetail.referenceId ? (
-
-                                                <div>
-                                                    <h6>Reference:</h6>
-                                                    <h6 className="mb-1 text-muted">{customer.referenceDetail.username}</h6>
-                                                    <a href={`mailto:${customer.referenceDetail.email}`} className="text-decoration-none text-primary"
-                                                        style={{ cursor: "pointer" }}>{customer.referenceDetail.email}</a>
-                                                </div>
-                                            ) : (
-                                                <div>
-                                                    <h6>Reference:</h6>
-                                                    <h6 className="mb-1 text-muted">{customer.referenceDetail.referenceName}</h6>
-                                                    <a href={`tel:${customer.referenceDetail.referenceContact}`} className="text-decoration-none text-primary"
-                                                        style={{ cursor: "pointer" }}>{customer.referenceDetail.referenceContact}</a>
-                                                </div>
-                                            )
-
+                                            <div>
+                                                <h6>Reference:</h6>
+                                                {customer.referenceDetail.referenceId ? (
+                                                    <div>
+                                                        <h6 className="mb-1 text-muted">
+                                                            {customer.referenceDetail.username}
+                                                        </h6>
+                                                        <a
+                                                            href={`mailto:${customer.referenceDetail.email}`}
+                                                            className="text-decoration-none text-primary"
+                                                            style={{ cursor: "pointer" }}
+                                                        >
+                                                            {customer.referenceDetail.email}
+                                                        </a>
+                                                    </div>
+                                                ) : (
+                                                    <div>
+                                                        <h6 className="mb-1 text-muted">
+                                                            {customer.referenceDetail.referenceName}
+                                                        </h6>
+                                                        <a
+                                                            href={`tel:${customer.referenceDetail.referenceContact}`}
+                                                            className="text-decoration-none text-primary"
+                                                            style={{ cursor: "pointer" }}
+                                                        >
+                                                            {customer.referenceDetail.referenceContact}
+                                                        </a>
+                                                    </div>
+                                                )}
+                                            </div>
                                         )}
+
                                         <div className="border-top pt-3">
                                             <h6 className="text-muted mb-3">Upcoming Renewal:</h6>
                                             <Button
@@ -638,7 +700,7 @@ const ReminderList = () => {
                                             >
                                                 <div>
                                                     <div className="fw-bold">{product.name}</div>
-                                                    <small className="">
+                                                    <small>
                                                         <FaCalendarAlt className="me-1" />
                                                         {new Date(renewal.renewalDate).toLocaleDateString("en-GB", {
                                                             day: "2-digit",
@@ -652,15 +714,36 @@ const ReminderList = () => {
                                                 </Badge>
                                             </Button>
 
+                                            {/* Share Button for Customer */}
+                                            <a
+                                                href={customerShareUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="btn btn-primary  mt-2  "
+                                            >
+                                                <FaWhatsapp style={{padding: "0 0 3px 0", fontSize: "19px" }} /> <span>Customer</span>
+                                                <CiShare1 style={{padding: "0 0 3px 0", fontSize: "19px" }}/>
+                                            </a>
+
+                                            {/* Conditional Share Button for Reference */}
+                                            {referenceShareUrl && (
+                                                <a
+                                                    href={referenceShareUrl}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="btn btn-info mt-2  "
+                                                >
+                                                    <FaWhatsapp style={{padding: "0 0 3px 0", fontSize: "19px" }} /> <span>Reference</span> <CiShare1 style={{padding: "0 0 3px 0", fontSize: "19px" }}/>
+                                                </a>
+                                            )}
                                         </div>
-
-
                                     </Card.Body>
-
                                 </Card>
                             </Col>
                         );
                     })}
+
+
                 </Row>
             ) : (
                 <Row>

@@ -12,7 +12,7 @@ export const addCustomer = (customerData) => async (dispatch) => {
     dispatch({ type: "ADD_CUSTOMER_REQUEST" });
 
     const { data } = await axiosInstance.post("/customer/customer", customerData);
-    console.log("Responce", data)
+    // console.log("Responce", data)
     dispatch({ type: "ADD_CUSTOMER_SUCCESS", payload: data.data });
 
     toast.success(data.message || "Customer added successfully!");
