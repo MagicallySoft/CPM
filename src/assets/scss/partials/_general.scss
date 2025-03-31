@@ -3,6 +3,7 @@
 ==========================  **/
 // @import url('./_variables.scss');
 @use "sass:color";
+@use './variables' as *;
 body {
   font-family: $theme-font-family;
   font-size: $theme-font-size;

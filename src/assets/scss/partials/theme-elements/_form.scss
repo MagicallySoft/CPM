@@ -1,7 +1,7 @@
 /**  =====================
       Form Componant css start
 ==========================  **/
-
+@use '../variables' as *;
 .custom-select,
 .form-control {
   background: $theme-background;

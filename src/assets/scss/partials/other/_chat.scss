@@ -2,7 +2,7 @@
       Chatting css start
 ==========================  **/
 @use "sass:color";
-
+@use '../variables' as *;
 
 .header-chat,
 .header-user-list {
@@ -108,7 +108,7 @@
     }
 
     &.active {
-      background: lighten($primary-color, 45%);
+      background: color.adjust($primary-color, $lightness: 45%);
     }
 
     .media-left {
@@ -174,7 +174,7 @@
 
   .h-list-body {
     height: 100%;
-    background: lighten($primary-color, 45%);
+    background: color.adjust($primary-color, $lightness: 45%);
   }
 
   .h-list-footer {
@@ -184,7 +184,7 @@
     right: 0;
     padding: 20px 15px;
     z-index: 10;
-    background: lighten($primary-color, 45%);
+    background: color.adjust($primary-color, $lightness: 45%);
 
     .input-group {
       background: #fff;

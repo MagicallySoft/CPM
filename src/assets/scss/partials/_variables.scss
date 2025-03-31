@@ -1,17 +1,17 @@
 // =======================================
 //     List of variables for layout
 // =======================================
-/*
-*/
-// @use './variables';
-@use "sass:color";
 
+// Import necessary Sass modules for namespaced functions.
+@use "sass:color";
+@use "sass:map";
+
+// Layout variables
 $header-height: 70px;
 $Menu-width: 264px;
 $Menu-collapsed-width: 80px;
 
-// color list for build layouts
-// temp variables
+// Color variables for build layouts
 $theme-color: linear-gradient(-135deg, #1de9b6 0%, #1dc4e9 100%);
 $theme-color2: linear-gradient(-135deg, #899fd4 0%, #a389d4 100%);
 $primary-color: #04a9f5;
@@ -27,7 +27,7 @@ $dark-color: #37474f;
 $inverse-color: $dark-color;
 $theme-border: #eaeaea;
 
-// header
+// Header
 $brand-background: #3f4d67;
 $header-dark-background: #3f4d67;
 $header-dark-text-color: #fff;
@@ -42,48 +42,51 @@ $menu-light-background: #fff;
 $menu-light-text-color: #3f4d67;
 $menu-active-color: #04a9f5;
 
-// dark layout colors
+// Dark layout colors
 $dark-layout: #212224;
 $dark-layout-font: #adb7be;
 
-// Menu icon
+// Menu icon (list of colors)
 $menu-icon-color: $primary-color, #ff5252, #01a9ac, #9575cd, #23b7e5, $warning-color;
-// Header background
+
+// Header background color
 $color-header-name: blue, red, purple, lightblue, dark;
-$color-header-color: $primary-color, #ff5252, #9575cd, #23b7e5, color.adjust($dark-layout, $lightness: 7%)
-;
-// Menu background
+$color-header-color: $primary-color, #ff5252, #9575cd, #23b7e5, color.adjust($dark-layout, $lightness: 7%);
+
+// Menu background color
 $color-menu-name: blue, red, purple, lightblue, dark;
-$color-menu-color: $primary-color, #ff5252, #9575cd, #23b7e5, color.adjust($dark-layout, $lightness: 7%)
-;
+$color-menu-color: $primary-color, #ff5252, #9575cd, #23b7e5, color.adjust($dark-layout, $lightness: 7%);
+
 // Active background color
 $color-active-name: blue, red, purple, lightblue, dark;
-$color-active-color: $primary-color, #ff5252, #9575cd, #23b7e5, color.adjust($dark-layout, $lightness: 7%)
-;
+$color-active-color: $primary-color, #ff5252, #9575cd, #23b7e5, color.adjust($dark-layout, $lightness: 7%);
+
 // Menu title color
 $color-title-name: blue, red, purple, lightblue, dark;
-$color-title-color: $primary-color, #ff5252, #9575cd, #23b7e5, color.adjust($dark-layout, $lightness: 7%)
-;
+$color-title-color: $primary-color, #ff5252, #9575cd, #23b7e5, color.adjust($dark-layout, $lightness: 7%);
 
-// layout-6 background color
+// Layout-6 background color
 $layout-6-bg-color: #23b7e5;
 
+// Typography and theme styles
 $theme-font-family: 'Open Sans', sans-serif;
 $theme-font-size: 14px;
 $theme-background: #f4f7fa;
 $theme-font-color: #888;
 $theme-heading-color: #111;
 
+// Additional color lists
 $color-name: c-blue, c-red, c-green, c-yellow, c-purple;
 $color-color: $primary-color, $danger-color, $success-color, $warning-color, $purple-color;
 $color-bt-name: primary, danger, success, warning, info;
 $color-bt-color: $primary-color, $danger-color, $success-color, $warning-color, $info-color;
 
-// form-control variables
+// Form control background
 $form-bg: #f0f3f6;
 
+// Theme colors: Merge provided theme colors with defaults.
 $theme-colors: () !default;
-$theme-colors: map-merge(
+$theme-colors: map.merge(
   (
     'primary': $primary-color,
     'secondary': $secondary-color,
@@ -95,7 +98,9 @@ $theme-colors: map-merge(
     'dark': $dark-color
   ),
   $theme-colors
-); // Color contrast
+);
+
+// Additional theme settings
 $yiq-contrasted-threshold: 200 !default;
 $yiq-dark-color: #37474f;
 $yiq-light-color: #fff;
@@ -105,7 +110,7 @@ $alert-border-level: -9 !default;
 $alert-color-level: 6 !default;
 
 :root {
-  // --bs-body-color: #888;
+  // --bs-body-color: #888; // Optional CSS custom property.
 }
 
 .breadcrumb {

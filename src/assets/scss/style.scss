@@ -14,37 +14,37 @@
         -   Invoice, Full Calender, File Upload,
 =================================================================================
 =================================================================================== */
-@use './partials/variables' ; 
-@import 'bootstrap/dist/css/bootstrap';
-// General theme contents
-@import 'partials/variables';
-@import 'partials/general';
-@import 'partials/generic';
-@import 'partials/mixins/function';
+// Using third-party CSS. Note: If bootstrap doesn't support modules, consider another method.
+@use 'bootstrap/dist/css/bootstrap'; 
 
-// icon
-@import 'partials/font/next-icon';
-@import 'partials/font/feather';
-@import 'partials/font/fontawesome';
+// Using your internal partials with explicit namespaces.
+@use 'partials/variables';
+@use 'partials/general';
+@use 'partials/generic';
+@use 'partials/mixins/function';
 
-// important Element
-@import 'partials/menu/menu-lite';
-@import 'partials/widget/widget';
+// Icon fonts.
+@use 'partials/font/next-icon';
+@use 'partials/font/feather';
+@use 'partials/font/fontawesome';
 
-// Theme Element
-@import 'partials/theme-elements/form';
-@import 'partials/theme-elements/radiobox-checkbox';
-@import 'partials/theme-elements/labels-badges';
-@import 'partials/theme-elements/data-tables';
-@import 'partials/theme-elements/authentication';
-@import 'partials/theme-elements/button';
-@import 'partials/theme-elements/breadcrumb-pagination';
-@import 'partials/theme-elements/progress';
-@import 'partials/theme-elements/nav';
+// Important Elements.
+@use 'partials/menu/menu-lite';
+@use 'partials/widget/widget';
 
-// Other
-@import 'partials/other/chat';
+// Theme Elements.
+@use 'partials/theme-elements/form';
+@use 'partials/theme-elements/radiobox-checkbox';
+@use 'partials/theme-elements/labels-badges';
+@use 'partials/theme-elements/data-tables';
+@use 'partials/theme-elements/authentication';
+@use 'partials/theme-elements/button';
+@use 'partials/theme-elements/breadcrumb-pagination';
+@use 'partials/theme-elements/progress';
+@use 'partials/theme-elements/nav';
 
-@import 'partials/third-party/third-party';
+// Other.
+@use 'partials/other/chat';
+@use 'partials/third-party/third-party';
 
 
