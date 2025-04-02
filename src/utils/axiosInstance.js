@@ -10,10 +10,10 @@ const axiosInstance = axios.create({
 
 // Request Interceptor: Check token expiry before sending requests
 axiosInstance.interceptors.request.use(
-  async (config) => {
+  async (config) => {  
     const token = localStorage.getItem("userToken");
 
-    if (!token && !config.url.includes("/auth/login")) {
+    if (!token && !config.url.includes("/auth/login") && !config.url.includes("/auth/register")) {
       const reduxStoreModule = await import("../redux/store");
           const store = reduxStoreModule.default;
           store.dispatch(logoutUser());

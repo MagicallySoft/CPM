@@ -47,7 +47,7 @@ const menuItems = {
                 title: 'Add Customer',
                 type: 'item',
                 url: '/addcustomer',
-                allowedRoles: ['admin', 'superadmin', 'subadmin'],
+                allowedRoles: ['admin', 'employee', 'superadmin', 'subadmin'],
               },
               {
                 id: 'custom-form',
@@ -59,7 +59,23 @@ const menuItems = {
             ]
           }
         ]
-      }
+      },
+      {
+        id: 'ui-registerCode',
+        title: 'REGISTRETION CODE', //UI ELEMENT
+        type: 'group',
+        icon: 'icon-ui',
+        allowedRoles: ['admin'],
+        children: [
+          {
+            id: 'registretioncode',
+            title: 'Registretion Code',
+            type: 'item',
+            icon: 'feather icon-box',
+            // allowedRoles: ['admin'],
+          }
+        ]
+      },
     ]
   };
   

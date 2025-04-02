@@ -75,12 +75,18 @@ const routes = [
         path: '/addcustomer',
         // Uncomment and add allowedRoles if needed:
         element: lazy(() => import('./components/customerForm/ClientForm')),
-        allowedRoles: [ 'admin', 'superadmin', 'subadmin']
+        allowedRoles: [ 'admin','employee', 'superadmin', 'subadmin']
       },
       {
         path: '/adminform',
         // Uncomment and add allowedRoles if needed:
         element: lazy(() => import('./components/customerForm/AdminCustomFieldsList')),
+        allowedRoles: [ 'admin']
+      },
+      {
+        path: '/generateCode',
+        // Uncomment and add allowedRoles if needed:
+        element: lazy(() => import('./components/auth/GenerateCode')),
         allowedRoles: [ 'admin']
       },
       // {

@@ -5,7 +5,7 @@ import axiosInstance from "../../../utils/axiosInstance";
 // Admin Registration Action
 export const registerAdmin = (adminData, navigate) => async (dispatch) => {
   try {
-    console.log(adminData)
+    // console.log(adminData)
     dispatch({ type: "REGISTER_ADMIN_REQUEST" });
     const { data } = await axiosInstance.post("/auth/registeradmin", adminData);
     console.log("data", data);
@@ -16,8 +16,8 @@ export const registerAdmin = (adminData, navigate) => async (dispatch) => {
   } catch (error) {
     const errorMessage =
       error.response?.data?.message || "Admin registration failed";
-    console.log(error.response);
-    console.log(error.response?.data?.message);
+    // console.log(error.response);
+    // console.log(error.response?.data?.message);
     
     dispatch({ type: "REGISTER_ADMIN_FAIL", payload: errorMessage });
     toast.error(errorMessage);
@@ -26,16 +26,22 @@ export const registerAdmin = (adminData, navigate) => async (dispatch) => {
 
 // Staff Registration Action
 export const registerStaff = (staffData, navigate) => async (dispatch) => {
+  // console.log("staffData____---->", staffData);
+  
   try {
     dispatch({ type: "REGISTER_STAFF_REQUEST" });
+    console.log("staffData____---->", staffData);
     const { data } = await axiosInstance.post("/auth/register", staffData);
-        
+    console.log("data---->", data);
+    
     dispatch({ type: "REGISTER_STAFF_SUCCESS", payload: data });
     toast.success("Staff registration successful!");
     navigate("/login"); // Redirect after registration
   } catch (error) {
     const errorMessage =
       error.response?.data?.message || "Staff registration failed";
+      console.log("errorMessage--->", error);
+      
     dispatch({ type: "REGISTER_STAFF_FAIL", payload: errorMessage });
     toast.error(errorMessage);
   }

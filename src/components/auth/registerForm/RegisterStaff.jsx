@@ -56,7 +56,8 @@ const RegisterStaff = () => {
     } else {
       setPasswordMismatch(false);
     }
-
+    // console.log("formData---->", formData);
+    
     dispatch(registerStaff(formData, navigate));
   };
 
@@ -138,6 +139,7 @@ const RegisterStaff = () => {
                     className="responsive-input"
                     type={showPassword ? "text" : "password"}
                     name="password"
+                    autoComplete="new-password"
                     placeholder="Enter password"
                     onChange={handleChange}
                     required

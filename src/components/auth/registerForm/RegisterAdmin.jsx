@@ -136,6 +136,7 @@ const RegisterAdmin = () => {
                                         className="responsive-input"
                                         type={showPassword ? "text" : "password"}
                                         name="password"
+                                        autoComplete="new-password"
                                         placeholder="Enter password"
                                         onChange={handleChange}
                                         required

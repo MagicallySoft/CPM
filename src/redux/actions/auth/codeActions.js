@@ -11,11 +11,15 @@ export const generateCode_ = (payload) => async (dispatch) => {
     }
 
     const { data } = await axiosInstance.post("/auth/generatecode", payload);
+    // console.log("data--->", data);
+    
     dispatch({ type: "GENERATE_CODE_SUCCESS", payload: data.data.code });
     toast.success(data.message || "Registration code generated successfully!");
   } catch (error) {
     const errorMessage =
       error.response?.data?.message || error.message || "Failed to generate code";
+    // console.log("errorMessage---->", errorMessage);
+    
     dispatch({ type: "GENERATE_CODE_FAIL", payload: errorMessage });
     toast.error(errorMessage);
   }
